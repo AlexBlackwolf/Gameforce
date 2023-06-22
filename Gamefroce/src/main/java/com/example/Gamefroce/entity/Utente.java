@@ -1,4 +1,4 @@
-package Entity;
+package com.example.Gamefroce.entity;
 
 import Utils.DataEncryption;
 import jakarta.persistence.Entity;
