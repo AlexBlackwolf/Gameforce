@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idUtente;
+    private Long idUtente;
     private String nome;
     private String cognome;
     private String email;
