@@ -1,5 +1,6 @@
 package com.example.Gamefroce;
 
+import Entity.Utente;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
