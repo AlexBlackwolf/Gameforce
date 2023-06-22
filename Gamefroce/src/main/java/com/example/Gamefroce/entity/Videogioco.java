@@ -1,4 +1,4 @@
-package Entity;
+package com.example.Gamefroce.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
