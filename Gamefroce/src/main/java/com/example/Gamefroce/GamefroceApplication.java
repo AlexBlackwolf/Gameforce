@@ -8,6 +8,7 @@ public class GamefroceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GamefroceApplication.class, args);
+		System.out.println("Gameforce Started");
 	}
 
 }

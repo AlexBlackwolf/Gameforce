@@ -9,10 +9,12 @@ import jakarta.persistence.Id;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.persistence.Table;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 @Entity
+@Table(name = "utente")
 public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

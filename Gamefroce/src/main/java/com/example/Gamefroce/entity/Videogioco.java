@@ -1,11 +1,9 @@
 package com.example.Gamefroce.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "videogioco")
 public class Videogioco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
