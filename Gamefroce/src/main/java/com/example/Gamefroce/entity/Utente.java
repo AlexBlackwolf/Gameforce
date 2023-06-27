@@ -1,42 +1,51 @@
 package com.example.Gamefroce.entity;
-
 import Utils.DataEncryption;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.persistence.Table;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+//rimosso jakarta per via dei problemi meglio usare javax
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "utente")
 public class Utente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idUtente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private Long codiceUtente;
     private String nome;
     private String cognome;
     private String email;
     private String password;
 
-    public Utente(String nome, String cognome, String email, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    //rimosso throw dato che il costruttore non lo deve contenere
+    public Utente(String id,Long codiceUtente, String nome, String cognome, String email, String password)  {
+        this.id=id;
+        this.codiceUtente=codiceUtente;
         this.nome = nome;
         this.cognome = cognome;
-        this.email = DataEncryption.encrypt(email);
-        this.password = DataEncryption.encrypt(password);
+        //email non va criptata
+        this.email = email;
+        try {
+            this.password = DataEncryption.encrypt(password);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public long getIdUtente() {
-        return idUtente;
+    public String getId() {
+        return id;
     }
 
-    public void setIdUtente(long idUtente) {
-        this.idUtente = idUtente;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Long getCodiceUtente() {
+        return codiceUtente;
+    }
+
+    public void setCodiceUtente(Long codiceUtente) {
+        this.codiceUtente = codiceUtente;
     }
 
     public String getNome() {
@@ -67,9 +76,12 @@ public class Utente {
         return password;
     }
 
+    //aggiunto encrypt della password in caso di set
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            this.password = DataEncryption.encrypt(password);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
-
 }

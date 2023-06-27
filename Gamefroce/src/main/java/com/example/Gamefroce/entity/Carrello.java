@@ -1,33 +1,48 @@
 package com.example.Gamefroce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "carrello")
 public class Carrello {
+    //finire mapping entity e fare repository
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idCarrello;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //chiamare ID
+    private String id;
+    private Long codiceCarrello;
     private Utente utente;
+    //aggiungere 4 colonne aggiuntive created by, created on, modified by, modified on
+    //aggiungere cancellazione logica
+    //usare WHERE per vedere i record attivi
     private List<Videogioco> videogiochi;
+    //aggiungere auditable entity
 
-    public Carrello(Utente utente, List<Videogioco> videogiochi) {
+
+    public Carrello(String id, Long codiceCarrello, Utente utente, List<Videogioco> videogiochi) {
+        this.id = id;
+        this.codiceCarrello = codiceCarrello;
         this.utente = utente;
         this.videogiochi = videogiochi;
     }
 
-    public Long getIdCarrello() {
-        return idCarrello;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCarrello(Long idCarrello) {
-        this.idCarrello = idCarrello;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Long getCodiceCarrello() {
+        return codiceCarrello;
+    }
+
+    public void setCodiceCarrello(Long codiceCarrello) {
+        this.codiceCarrello = codiceCarrello;
     }
 
     public Utente getUtente() {

@@ -8,26 +8,37 @@ import java.sql.Timestamp;
 @Table(name = "ordine")
 public class Ordine {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long idOrdine;
+    private String id;
+    private Long codiceOrdine;
     private Utente utente;
     private Timestamp dataOrdine;
     private Videogioco videogioco;
 
-    public Ordine(Long idOrdine, Utente utente, Timestamp dataOrdine, Videogioco videogioco) {
-        this.idOrdine = idOrdine;
+    public Ordine(String id,Long codiceOrdine, Utente utente, Timestamp dataOrdine, Videogioco videogioco) {
+        this.id = id;
+        this.codiceOrdine=codiceOrdine;
         this.utente = utente;
         this.dataOrdine = dataOrdine;
         this.videogioco = videogioco;
     }
 
-    public Long getIdOrdine() {
-        return idOrdine;
+
+    public String getId() {
+        return id;
     }
 
-    public void setIdOrdine(Long idOrdine) {
-        this.idOrdine = idOrdine;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Long getCodiceOrdine() {
+        return codiceOrdine;
+    }
+
+    public void setCodiceOrdine(Long codiceOrdine) {
+        this.codiceOrdine = codiceOrdine;
     }
 
     public Utente getUtente() {

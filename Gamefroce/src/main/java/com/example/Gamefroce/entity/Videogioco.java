@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table(name = "videogioco")
 public class Videogioco {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idVideogioco;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private Long codiceVideogioco;
     private String titolo;
     private String genere;
     private String piattaforma;
@@ -22,16 +23,34 @@ public class Videogioco {
 
     // Other methods (if any)
 
-    public Videogioco() {
-        this.idVideogioco = idVideogioco;
+    // fill constructor
+    public Videogioco(String id, Long codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema) {
+        this.id = id;
+        this.codiceVideogioco = codiceVideogioco;
+        this.titolo = titolo;
+        this.genere = genere;
+        this.piattaforma = piattaforma;
+        this.prezzo = prezzo;
+        this.valutazione = valutazione;
+        this.descrizione = descrizione;
+        this.requisitiDiSistema = requisitiDiSistema;
+
     }
 
-    public Long getIdVideogioco() {
-        return idVideogioco;
+    public String getId() {
+        return id;
     }
 
-    public void setIdVideogioco(Long idVideogioco) {
-        this.idVideogioco = idVideogioco;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Long getCodiceVideogioco() {
+        return codiceVideogioco;
+    }
+
+    public void setCodiceVideogioco(Long codiceVideogioco) {
+        this.codiceVideogioco = codiceVideogioco;
     }
 
     public String getTitolo() {
