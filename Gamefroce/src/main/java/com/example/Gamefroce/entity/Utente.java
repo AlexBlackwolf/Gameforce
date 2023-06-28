@@ -3,40 +3,48 @@ import Utils.DataEncryption;
 
 //rimosso jakarta per via dei problemi meglio usare javax
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "utente")
 public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private Long codiceUtente;
     private String nome;
     private String cognome;
     private String email;
     private String password;
+    private String createdBy;
+    private String createdOn;
+    private String modifyBy;
+    private String modifyOn;
 
     //rimosso throw dato che il costruttore non lo deve contenere
-    public Utente(String id,Long codiceUtente, String nome, String cognome, String email, String password)  {
-        this.id=id;
-        this.codiceUtente=codiceUtente;
+
+
+    public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifyBy, String modifyOn) {
+        this.id = id;
+        this.codiceUtente = codiceUtente;
         this.nome = nome;
         this.cognome = cognome;
-        //email non va criptata
         this.email = email;
         try {
-            this.password = DataEncryption.encrypt(password);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+                this.password = DataEncryption.encrypt(password);
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        this.createdBy = createdBy;
+        this.createdOn = createdOn;
+        this.modifyBy = modifyBy;
+        this.modifyOn = modifyOn;
     }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -83,5 +91,37 @@ public class Utente {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getModifyBy() {
+        return modifyBy;
+    }
+
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
+    }
+
+    public String getModifyOn() {
+        return modifyOn;
+    }
+
+    public void setModifyOn(String modifyOn) {
+        this.modifyOn = modifyOn;
     }
 }
