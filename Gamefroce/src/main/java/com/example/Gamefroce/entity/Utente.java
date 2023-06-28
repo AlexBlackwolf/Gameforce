@@ -1,24 +1,30 @@
 package com.example.Gamefroce.entity;
 import Utils.DataEncryption;
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //rimosso jakarta per via dei problemi meglio usare javax
 
-import javax.persistence.*;
 
+
+@SpringBootApplication
+@EnableJpaRepositories
 @Entity
 @Table(name = "utente")
 public class Utente {
+    //add
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private Long codiceUtente;
+    private int codiceUtente;
     private String nome;
     private String cognome;
     private String email;
     private String password;
 
     //rimosso throw dato che il costruttore non lo deve contenere
-    public Utente(String id,Long codiceUtente, String nome, String cognome, String email, String password)  {
+    public Utente(String id,int codiceUtente, String nome, String cognome, String email, String password)  {
         this.id=id;
         this.codiceUtente=codiceUtente;
         this.nome = nome;
@@ -40,11 +46,11 @@ public class Utente {
         this.id = id;
     }
 
-    public Long getCodiceUtente() {
+    public int getCodiceUtente() {
         return codiceUtente;
     }
 
-    public void setCodiceUtente(Long codiceUtente) {
+    public void setCodiceUtente(int codiceUtente) {
         this.codiceUtente = codiceUtente;
     }
 
