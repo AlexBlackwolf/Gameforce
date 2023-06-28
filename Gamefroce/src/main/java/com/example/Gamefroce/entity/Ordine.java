@@ -1,27 +1,30 @@
 package com.example.Gamefroce.entity;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import java.sql.Timestamp;
 
+
+@SpringBootApplication
+@EnableJpaRepositories
 @Entity
 @Table(name = "ordine")
 public class Ordine {
+    //add
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private String id;
-    private Long codiceOrdine;
-    private Utente utente;
+    private int codiceOrdine;
     private Timestamp dataOrdine;
-    private Videogioco videogioco;
 
-    public Ordine(String id,Long codiceOrdine, Utente utente, Timestamp dataOrdine, Videogioco videogioco) {
+    public Ordine(String id,int codiceOrdine,Timestamp dataOrdine, Videogioco videogioco) {
         this.id = id;
         this.codiceOrdine=codiceOrdine;
-        this.utente = utente;
         this.dataOrdine = dataOrdine;
-        this.videogioco = videogioco;
     }
 
 
@@ -33,20 +36,12 @@ public class Ordine {
         this.id = id;
     }
 
-    public Long getCodiceOrdine() {
+    public int getCodiceOrdine() {
         return codiceOrdine;
     }
 
-    public void setCodiceOrdine(Long codiceOrdine) {
+    public void setCodiceOrdine(int codiceOrdine) {
         this.codiceOrdine = codiceOrdine;
-    }
-
-    public Utente getUtente() {
-        return utente;
-    }
-
-    public void setUtente(Utente utente) {
-        this.utente = utente;
     }
 
     public Timestamp getDataOrdine() {
@@ -55,13 +50,5 @@ public class Ordine {
 
     public void setDataOrdine(Timestamp dataOrdine) {
         this.dataOrdine = dataOrdine;
-    }
-
-    public Videogioco getVideogioco() {
-        return videogioco;
-    }
-
-    public void setVideogioco(Videogioco videogioco) {
-        this.videogioco = videogioco;
     }
 }

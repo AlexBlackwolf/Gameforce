@@ -1,10 +1,14 @@
 package com.example.Gamefroce.entity;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-
-import javax.persistence.*;
 import java.util.List;
 
+
+@SpringBootApplication
+@EnableJpaRepositories
 @Entity
 @Table(name = "carrello")
 public class Carrello {
@@ -13,20 +17,15 @@ public class Carrello {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //chiamare ID
     private String id;
-    private Long codiceCarrello;
-    private Utente utente;
+    private int codiceCarrello;
     //aggiungere 4 colonne aggiuntive created by, created on, modified by, modified on
     //aggiungere cancellazione logica
     //usare WHERE per vedere i record attivi
-    private List<Videogioco> videogiochi;
     //aggiungere auditable entity
-
-
-    public Carrello(String id, Long codiceCarrello, Utente utente, List<Videogioco> videogiochi) {
+    //add
+    public Carrello(String id, int codiceCarrello) {
         this.id = id;
         this.codiceCarrello = codiceCarrello;
-        this.utente = utente;
-        this.videogiochi = videogiochi;
     }
 
     public String getId() {
@@ -37,28 +36,13 @@ public class Carrello {
         this.id = id;
     }
 
-    public Long getCodiceCarrello() {
+    public int getCodiceCarrello() {
         return codiceCarrello;
     }
 
-    public void setCodiceCarrello(Long codiceCarrello) {
+    public void setCodiceCarrello(int codiceCarrello) {
         this.codiceCarrello = codiceCarrello;
     }
 
-    public Utente getUtente() {
-        return utente;
     }
-
-    public void setUtente(Utente utente) {
-        this.utente = utente;
-    }
-
-    public List<Videogioco> getVideogiochi() {
-        return videogiochi;
-    }
-
-    public void setVideogiochi(List<Videogioco> videogiochi) {
-        this.videogiochi = videogiochi;
-    }
-}
 

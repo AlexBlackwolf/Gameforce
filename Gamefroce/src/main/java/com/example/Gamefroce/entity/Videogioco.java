@@ -1,14 +1,19 @@
 package com.example.Gamefroce.entity;
 
-import javax.persistence.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import jakarta.persistence.*;
+
+@SpringBootApplication
+@EnableJpaRepositories("com.example.Gamefroce.repository")
 @Entity
 @Table(name = "videogioco")
 public class Videogioco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private Long codiceVideogioco;
+    private int codiceVideogioco;
     private String titolo;
     private String genere;
     private String piattaforma;
@@ -24,7 +29,8 @@ public class Videogioco {
     // Other methods (if any)
 
     // fill constructor
-    public Videogioco(String id, Long codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema) {
+    // add
+    public Videogioco(String id, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema) {
         this.id = id;
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
@@ -45,11 +51,11 @@ public class Videogioco {
         this.id = id;
     }
 
-    public Long getCodiceVideogioco() {
+    public int getCodiceVideogioco() {
         return codiceVideogioco;
     }
 
-    public void setCodiceVideogioco(Long codiceVideogioco) {
+    public void setCodiceVideogioco(int codiceVideogioco) {
         this.codiceVideogioco = codiceVideogioco;
     }
 
