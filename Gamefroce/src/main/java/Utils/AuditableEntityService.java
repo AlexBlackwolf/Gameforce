@@ -1,7 +1,7 @@
-package services;
+package Utils;
 
 import com.example.Gamefroce.entity.AuditableEntity;
-import dao.AuditableEntityDao;
+import com.example.Gamefroce.repository.AuditableEntityDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

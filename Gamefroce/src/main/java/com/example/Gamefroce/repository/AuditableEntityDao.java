@@ -1,4 +1,4 @@
-package dao;
+package com.example.Gamefroce.repository;
 
 import com.example.Gamefroce.entity.AuditableEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
