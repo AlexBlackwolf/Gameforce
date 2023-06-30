@@ -1,4 +1,4 @@
-package com.example.Gamefroce.Repository;
+package com.example.Gamefroce.repository;
 
 import com.example.Gamefroce.entity.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
