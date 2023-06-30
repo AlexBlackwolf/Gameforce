@@ -21,6 +21,13 @@ public class Videogioco {
     private String descrizione;
     private String requisitiDiSistema;
 
+    private String createdBy;
+    private String createdOn;
+    private String modifiedBy;
+    private String modifiedOn;
+    private String deletedBy;
+    private String deletedOn;
+
     // Constructors (including default constructor)
 
     // Getters and Setters
@@ -28,8 +35,9 @@ public class Videogioco {
     // Other methods (if any)
 
     // fill constructor
+
     // add
-    public Videogioco(String id, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema) {
+    public Videogioco(String id, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, String createdBy, String createdOn, String modifiedBy, String modifiedOn, String deletedBy, String deletedOn) {
         this.id = id;
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
@@ -39,9 +47,13 @@ public class Videogioco {
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.requisitiDiSistema = requisitiDiSistema;
-
+        this.createdBy = createdBy;
+        this.createdOn = createdOn;
+        this.modifiedBy = modifiedBy;
+        this.modifiedOn = modifiedOn;
+        this.deletedBy = deletedBy;
+        this.deletedOn = deletedOn;
     }
-
     public String getId() {
         return id;
     }
@@ -112,5 +124,53 @@ public class Videogioco {
 
     public void setRequisitiDiSistema(String requisitiDiSistema) {
         this.requisitiDiSistema = requisitiDiSistema;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public void setModifiedOn(String modifiedOn) {
+        this.modifiedOn = modifiedOn;
+    }
+
+    public String getDeletedBy() {
+        return deletedBy;
+    }
+
+    public void setDeletedBy(String deletedBy) {
+        this.deletedBy = deletedBy;
+    }
+
+    public String getDeletedOn() {
+        return deletedOn;
+    }
+
+    public void setDeletedOn(String deletedOn) {
+        this.deletedOn = deletedOn;
     }
 }

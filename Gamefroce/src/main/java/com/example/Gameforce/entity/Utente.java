@@ -14,8 +14,10 @@ public class Utente {
     private String password;
     private String createdBy;
     private String createdOn;
-    private String modifyBy;
-    private String modifyOn;  public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifyBy, String modifyOn) {
+    private String modifiedBy;
+    private String modifiedOn;
+
+    public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifiedBy, String modifiedOn) {
         this.id = id;
         this.codiceUtente = codiceUtente;
         this.nome = nome;
@@ -27,8 +29,8 @@ public class Utente {
         }
         this.createdBy = createdBy;
         this.createdOn = createdOn;
-        this.modifyBy = modifyBy;
-        this.modifyOn = modifyOn;
+        this.modifiedBy = modifiedBy;
+        this.modifiedOn = modifiedOn;
     }
     public void setId(Long id) {
         this.id = id;
@@ -85,19 +87,19 @@ public class Utente {
         this.createdOn = createdOn;
         }
 
-    public String getModifyBy() {
-        return modifyBy;
+    public String getModifiedBy() {
+        return modifiedBy;
         }
 
-    public void setModifyBy(String modifyBy) {
-        this.modifyBy = modifyBy;
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
         }
 
-    public String getModifyOn() {
-        return modifyOn;
+    public String getModifiedOn() {
+        return modifiedOn;
         }
 
-    public void setModifyOn(String modifyOn) {
-        this.modifyOn = modifyOn;
+    public void setModifiedOn(String modifiedOn) {
+        this.modifiedOn = modifiedOn;
     }
 }
