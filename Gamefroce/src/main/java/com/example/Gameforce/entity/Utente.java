@@ -1,4 +1,4 @@
-package com.example.Gamefroce.entity;//
+package com.example.Gameforce.entity;//
 // rimosso jakarta per via dei problemi meglio usare javax
 import Utils.DataEncryption;
 import jakarta.persistence.*;

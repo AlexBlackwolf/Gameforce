@@ -1,6 +1,6 @@
-package com.example.Gamefroce.repository;
+package com.example.Gameforce.repository;
 
-import com.example.Gamefroce.entity.AuditableEntity;
+import com.example.Gameforce.entity.AuditableEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

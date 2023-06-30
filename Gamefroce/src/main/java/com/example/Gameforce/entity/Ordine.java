@@ -1,4 +1,4 @@
-package com.example.Gamefroce.entity;
+package com.example.Gameforce.entity;
 
 
 import jakarta.persistence.*;

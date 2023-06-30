@@ -1,7 +1,6 @@
-package com.example.Gamefroce.repository;
+package com.example.Gameforce.repository;
 
-import com.example.Gamefroce.entity.Carrello;
-import com.example.Gamefroce.entity.Utente;
+import com.example.Gameforce.entity.Carrello;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

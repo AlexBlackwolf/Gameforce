@@ -1,4 +1,4 @@
-package com.example.Gamefroce.entity;
+package com.example.Gameforce.entity;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

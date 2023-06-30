@@ -1,6 +1,6 @@
-package com.example.Gamefroce.repository;
+package com.example.Gameforce.repository;
 
-import com.example.Gamefroce.entity.Videogioco;
+import com.example.Gameforce.entity.Videogioco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
