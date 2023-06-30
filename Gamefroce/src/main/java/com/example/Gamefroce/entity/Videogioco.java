@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import jakarta.persistence.*;
 
-@SpringBootApplication
-@EnableJpaRepositories("com.example.Gamefroce.repository")
+
 @Entity
 @Table(name = "videogioco")
 public class Videogioco {

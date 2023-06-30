@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.util.List;
 
 
-@SpringBootApplication
-@EnableJpaRepositories
+
 @Entity
 @Table(name = "carrello")
 public class Carrello {

@@ -1,9 +1,10 @@
 package com.example.Gamefroce.entity;
 import Utils.DataEncryption;
+import jakarta.persistence.*;
 
 //rimosso jakarta per via dei problemi meglio usare javax
 
-import javax.persistence.*;
+
 
 @Entity
 @Table(name = "utente")

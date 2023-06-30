@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.sql.Timestamp;
 
 
-@SpringBootApplication
-@EnableJpaRepositories
+
 @Entity
 @Table(name = "ordine")
 public class Ordine {
