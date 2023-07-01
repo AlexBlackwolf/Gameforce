@@ -13,15 +13,17 @@ public abstract class AuditableEntity {
     private String createBy;
     private String modifiedBy;
     private String modifiedOn;
-    private Boolean deleted;
+    private boolean deleted;
 
 
     public AuditableEntity(Long id, String createdOn, String createBy, String modifyBy, String modifyOn) {
+        this.id=id;
         this.createdOn = createdOn;
         this.createBy = createBy;
         this.modifiedBy = modifyBy;
         this.modifiedOn = modifyOn;
-        this.deleted = deleted;
+
+        //soon to be deletedby and deletedOn
     }
 
     public Long getId() {
