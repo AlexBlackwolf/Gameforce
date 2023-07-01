@@ -1,17 +1,13 @@
 package com.example.Gameforce.entity;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "videogioco")
-public class Videogioco {
-    @Id
+public class Videogioco extends AuditableEntity{
+    //cancellato annotation ID dato che l'id sarà preso dalla classe padre
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    //modifiy to auto-incre, int
     private int codiceVideogioco;
     private String titolo;
     private String genere;
@@ -20,11 +16,6 @@ public class Videogioco {
     private double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-
-    private String createdBy;
-    private String createdOn;
-    private String modifiedBy;
-    private String modifiedOn;
     private String deletedBy;
     private String deletedOn;
 
@@ -37,8 +28,8 @@ public class Videogioco {
     // fill constructor
 
     // add
-    public Videogioco(String id, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, String createdBy, String createdOn, String modifiedBy, String modifiedOn, String deletedBy, String deletedOn) {
-        this.id = id;
+    public Videogioco(Long id, String createdOn, String createdBy, String modiftBy, String modiftOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
+        super(id, createdOn, createdBy, modiftBy, modiftOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
         this.genere = genere;
@@ -47,21 +38,10 @@ public class Videogioco {
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.requisitiDiSistema = requisitiDiSistema;
-        this.createdBy = createdBy;
-        this.createdOn = createdOn;
-        this.modifiedBy = modifiedBy;
-        this.modifiedOn = modifiedOn;
+
         this.deletedBy = deletedBy;
         this.deletedOn = deletedOn;
     }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public int getCodiceVideogioco() {
         return codiceVideogioco;
     }
@@ -124,38 +104,6 @@ public class Videogioco {
 
     public void setRequisitiDiSistema(String requisitiDiSistema) {
         this.requisitiDiSistema = requisitiDiSistema;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public String getModifiedBy() {
-        return modifiedBy;
-    }
-
-    public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
-    }
-
-    public String getModifiedOn() {
-        return modifiedOn;
-    }
-
-    public void setModifiedOn(String modifiedOn) {
-        this.modifiedOn = modifiedOn;
     }
 
     public String getDeletedBy() {

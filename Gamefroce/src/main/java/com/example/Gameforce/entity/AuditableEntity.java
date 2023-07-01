@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class AuditableEntity {
+//class needs to be abstract to avoid to be inizialized as a table
+public abstract class AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,18 +15,23 @@ public class AuditableEntity {
     private String createBy;
     private String modifyBy;
     private String modifyOn;
-
-
-
     private Boolean deleted;
 
 
-    public AuditableEntity(String createdOn, String createBy, String modifyBy, String modifyOn, Boolean deleted) {
+    public AuditableEntity(Long id, String createdOn, String createBy, String modifyBy, String modifyOn) {
         this.createdOn = createdOn;
         this.createBy = createBy;
         this.modifyBy = modifyBy;
         this.modifyOn = modifyOn;
         this.deleted = deleted;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCreatedOn() {
