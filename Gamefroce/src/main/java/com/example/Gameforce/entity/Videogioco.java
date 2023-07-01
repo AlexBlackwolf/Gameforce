@@ -1,5 +1,4 @@
 package com.example.Gameforce.entity;
-
 import jakarta.persistence.*;
 
 @Entity
