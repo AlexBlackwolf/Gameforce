@@ -1,4 +1,4 @@
-package Utils;
+package com.example.Gameforce.utils;
 
 import java.security.InvalidKeyException;
 import java.security.Key;

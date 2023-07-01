@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "videogioco")
 public class Videogioco extends AuditableEntity{
     //cancellato annotation ID dato che l'id sarà preso dalla classe padre
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     //modifiy to auto-incre, int
     private int codiceVideogioco;
     private String titolo;
@@ -28,8 +28,8 @@ public class Videogioco extends AuditableEntity{
     // fill constructor
 
     // add
-    public Videogioco(Long id, String createdOn, String createdBy, String modiftBy, String modiftOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
-        super(id, createdOn, createdBy, modiftBy, modiftOn);
+    public Videogioco(Long id, String createdOn, String createdBy, String modifiedBy, String modifiedOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
+        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
         this.genere = genere;

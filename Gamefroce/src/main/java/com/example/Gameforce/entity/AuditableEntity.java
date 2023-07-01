@@ -1,11 +1,9 @@
 package com.example.Gameforce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
+
+@MappedSuperclass
 //class needs to be abstract to avoid to be inizialized as a table
 public abstract class AuditableEntity {
     @Id
@@ -13,16 +11,16 @@ public abstract class AuditableEntity {
     private Long id;
     private String createdOn;
     private String createBy;
-    private String modifyBy;
-    private String modifyOn;
+    private String modifiedBy;
+    private String modifiedOn;
     private Boolean deleted;
 
 
     public AuditableEntity(Long id, String createdOn, String createBy, String modifyBy, String modifyOn) {
         this.createdOn = createdOn;
         this.createBy = createBy;
-        this.modifyBy = modifyBy;
-        this.modifyOn = modifyOn;
+        this.modifiedBy = modifyBy;
+        this.modifiedOn = modifyOn;
         this.deleted = deleted;
     }
 
@@ -51,19 +49,19 @@ public abstract class AuditableEntity {
     }
 
     public String getModifyBy() {
-        return modifyBy;
+        return modifiedBy;
     }
 
     public void setModifyBy(String modifyBy) {
-        this.modifyBy = modifyBy;
+        this.modifiedBy = modifyBy;
     }
 
     public String getModifyOn() {
-        return modifyOn;
+        return modifiedOn;
     }
 
     public void setModifyOn(String modifyOn) {
-        this.modifyOn = modifyOn;
+        this.modifiedOn = modifyOn;
     }
     public Boolean getDeleted() {
         return deleted;
