@@ -2,7 +2,7 @@ package com.example.Gameforce.dto;
 
 import com.example.Gameforce.entity.Ordine;
 
-public class VideogiocoDTO {
+public class VideogiocoDTO extends AuditableDTO{
     private int codiceVideogioco;
     private String titolo;
     private String genere;
