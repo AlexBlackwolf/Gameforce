@@ -1,4 +1,5 @@
 package com.example.Gameforce.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,8 +16,11 @@ public class Videogioco extends AuditableEntity{
     private double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-    private String deletedBy;
-    private String deletedOn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ordine_id", nullable = false)
+    @JsonBackReference
+    private Ordine ordine;
 
     // Constructors (including default constructor)
 
@@ -37,9 +41,6 @@ public class Videogioco extends AuditableEntity{
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.requisitiDiSistema = requisitiDiSistema;
-
-        this.deletedBy = deletedBy;
-        this.deletedOn = deletedOn;
     }
     public int getCodiceVideogioco() {
         return codiceVideogioco;
@@ -105,19 +106,4 @@ public class Videogioco extends AuditableEntity{
         this.requisitiDiSistema = requisitiDiSistema;
     }
 
-    public String getDeletedBy() {
-        return deletedBy;
-    }
-
-    public void setDeletedBy(String deletedBy) {
-        this.deletedBy = deletedBy;
-    }
-
-    public String getDeletedOn() {
-        return deletedOn;
-    }
-
-    public void setDeletedOn(String deletedOn) {
-        this.deletedOn = deletedOn;
-    }
 }

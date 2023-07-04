@@ -1,6 +1,9 @@
 package com.example.Gameforce.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "ordine")
@@ -8,6 +11,21 @@ public class Ordine extends AuditableEntity {
 
     private int codiceOrdine;
     private Timestamp dataOrdine;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "utente_id", nullable = false)
+    @JsonBackReference
+    private Utente utente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "carello_id", nullable = false)
+    @JsonBackReference
+    private Carrello carrello;
+
+    @OneToMany(mappedBy = "ordine")
+    @JsonManagedReference
+    private List<Videogioco> videogiochi;
+
 
     // deletedBy and deletedOn are not present in the constructor as they are null by default, when the entity is created, and will be modified once it has been deleted.
 

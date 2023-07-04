@@ -1,6 +1,9 @@
 package com.example.Gameforce.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "carrello")
@@ -8,6 +11,10 @@ public class Carrello extends AuditableEntity{
     //finire mapping entity e fare repository
     //chiamare ID
     private int codiceCarrello;
+
+    @OneToMany(mappedBy = "carrello")
+    @JsonManagedReference
+    private List<Ordine> ordiniCarello;
 
     //aggiungere 4 colonne aggiuntive created by, created on, modified by, modified on
     //aggiungere cancellazione logica

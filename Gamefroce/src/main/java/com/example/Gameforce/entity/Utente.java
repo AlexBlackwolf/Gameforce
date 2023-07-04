@@ -1,16 +1,28 @@
 package com.example.Gameforce.entity;//
 // rimosso jakarta per via dei problemi meglio usare javax
 import com.example.Gameforce.utils.DataEncryption;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Or;
+
+import java.util.List;
+
 @Entity
 @Table(name = "utente")
 public class Utente extends AuditableEntity {
-
     private Long codiceUtente;
     private String nome;
     private String cognome;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "utente")
+    @JsonManagedReference
+    private List<Ordine> ordiniUtente;
+
+    @OneToOne
+    @JoinColumn(name = "carrello_id")
+    private Carrello carrello;
 
     public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifiedBy, String modifiedOn) {
         super(id, createdOn, createdBy, modifiedBy, modifiedOn);
