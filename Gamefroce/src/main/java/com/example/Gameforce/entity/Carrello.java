@@ -12,6 +12,8 @@ public class Carrello extends AuditableEntity{
     //chiamare ID
     private int codiceCarrello;
 
+
+
     @OneToMany(mappedBy = "carrello")
     @JsonManagedReference
     private List<Ordine> ordiniCarello;
@@ -32,6 +34,12 @@ public class Carrello extends AuditableEntity{
 
     public void setCodiceCarrello(int codiceCarrello) {
         this.codiceCarrello = codiceCarrello;
+    }
+    public List<Ordine> getOrdiniCarello() {
+        return ordiniCarello;
+    }
+    public void setOrdiniCarello(List<Ordine> ordiniCarello) {
+        this.ordiniCarello = ordiniCarello;
     }
 }
 
