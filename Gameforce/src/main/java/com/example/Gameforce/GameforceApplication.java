@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GamefroceApplication {
+public class GameforceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GamefroceApplication.class, args);
+		SpringApplication.run(GameforceApplication.class, args);
 		System.out.println("Gameforce Started");
 	}
 
