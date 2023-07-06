@@ -1,14 +1,16 @@
 package com.example.Gameforce.utils;
 
 import com.example.Gameforce.entity.Carrello;
+import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.repository.CarrelloRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CarrelloService extends EntityTrackingService {
+public class CarrelloService {
     private CarrelloRepo carrelloRepo;
     @Autowired
     public CarrelloService(CarrelloRepo carrelloRepo) {
@@ -44,6 +46,11 @@ public class CarrelloService extends EntityTrackingService {
         existingCarrello.setOrdiniCarello(updatedCarrello.getOrdiniCarello());
 
         carrelloRepo.save(existingCarrello);
+    }
+    public void logicalDelete(Long id){
+        Optional<Carrello> optionalEntity = carrelloRepo.findById(id);
+        optionalEntity.ifPresent(entity->{entity.setDeleted(true);
+            carrelloRepo.save(entity);});
     }
 }
 

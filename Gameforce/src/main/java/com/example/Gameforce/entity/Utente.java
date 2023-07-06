@@ -31,7 +31,12 @@ public class Utente extends AuditableEntity {
         this.cognome = cognome;//email non va criptata
         this.email = email;
         try {
+            if(password==null){
+                System.out.println("password is nulla");}
+            else{
             this.password = DataEncryption.encrypt(password);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

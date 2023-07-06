@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UtenteService extends EntityTrackingService {
+public class UtenteService{
     @Autowired
     private UtenteRepo utenteRepo;
 
@@ -27,6 +28,11 @@ public class UtenteService extends EntityTrackingService {
     public void updateUtente(Long id,Utente utente){
         utenteRepo.deleteById(id);
         utenteRepo.save(utente);
+    }
+    public void logicalDelete(Long id){
+        Optional<Utente> optionalEntity = utenteRepo.findById(id);
+        optionalEntity.ifPresent(entity->{entity.setDeleted(true);
+            utenteRepo.save(entity);});
     }
 
 
