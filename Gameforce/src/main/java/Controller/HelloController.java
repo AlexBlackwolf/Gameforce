@@ -1,10 +1,8 @@
 package Controller;
 
 import com.example.Gameforce.entity.Utente;
-import com.example.Gameforce.utils.UtenteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.Gameforce.service.UtenteService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.Gameforce.utils;
+package com.example.Gameforce.service;
 
 import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.entity.Utente;

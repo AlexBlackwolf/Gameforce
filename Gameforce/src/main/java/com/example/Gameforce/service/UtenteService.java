@@ -1,4 +1,4 @@
-package com.example.Gameforce.utils;
+package com.example.Gameforce.service;
 
 import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.repository.UtenteRepo;
@@ -34,6 +34,4 @@ public class UtenteService{
         optionalEntity.ifPresent(entity->{entity.setDeleted(true);
             utenteRepo.save(entity);});
     }
-
-
 }
