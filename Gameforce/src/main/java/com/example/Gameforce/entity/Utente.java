@@ -30,9 +30,19 @@ public class Utente extends AuditableEntity {
         this.nome = nome;
         this.cognome = cognome;//email non va criptata
         this.email = email;
+        this.password=password;
+    }
+    public Utente (){
+        super();
+    }
+    // check if password is not null and if exist encrypt the password
+    //gli oggetti vengono creati nel database quando passano dal service
+    //Entity mapping
+    //muoverla nel service
+    private void extracted(String password) {
         try {
-            if(password==null){
-                System.out.println("password is nulla");}
+            if(password ==null){
+                }
             else{
             this.password = DataEncryption.encrypt(password);
             }
@@ -79,6 +89,7 @@ public class Utente extends AuditableEntity {
     }
 
     //aggiunto encrypt della password in caso di set
+    // refactoring
     public void setPassword(String password) {
         try {
             this.password = DataEncryption.encrypt(password);

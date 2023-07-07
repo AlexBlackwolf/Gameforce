@@ -1,5 +1,6 @@
 package com.example.Gameforce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -9,10 +10,15 @@ public abstract class AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     private String createdOn;
+    @JsonIgnore
     private String createBy;
+    @JsonIgnore
     private String modifiedBy;
+    @JsonIgnore
     private String modifiedOn;
+    @JsonIgnore
     private boolean deleted;
 
 
@@ -24,6 +30,10 @@ public abstract class AuditableEntity {
         this.modifiedOn = modifyOn;
 
         //soon to be deletedby and deletedOn
+    }
+
+    public AuditableEntity() {
+
     }
 
     public Long getId() {

@@ -10,8 +10,15 @@ import java.util.Optional;
 
 @Service
 public class UtenteService{
-    @Autowired
+
     private UtenteRepo utenteRepo;
+    @Autowired
+    public UtenteService(UtenteRepo utenteRepo) {
+        this.utenteRepo = utenteRepo;
+    }
+
+    //gestire gli optional
+
 
     public void addUtente(Utente utente){
        utenteRepo.save(utente);
