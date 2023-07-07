@@ -39,6 +39,7 @@ public class VideogiocoService {
         optionalEntity.ifPresent(entity -> {
             entity.setDeleted(true);
             videogiocoRepo.save(entity);
+
         });
     }
 }
