@@ -11,7 +11,6 @@ public class UtenteDTO extends AuditableDTO{
     private String nome;
     private String cognome;
     private String email;
-    private String password;
     private List<Ordine> ordiniUtente;
     private Carrello carrello;
 
@@ -45,14 +44,6 @@ public class UtenteDTO extends AuditableDTO{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Ordine> getOrdiniUtente() {

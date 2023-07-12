@@ -27,13 +27,19 @@ public class Ordine extends AuditableEntity {
     private List<Videogioco> videogiochi;
 
 
-    // deletedBy and deletedOn are not present in the constructor as they are null by default, when the entity is created, and will be modified once it has been deleted.
-
-    public Ordine(Long id, int codiceOrdine, Timestamp dataOrdine, String createdBy, String createdOn, String modifiedOn, String modifiedby) {
-        super(id, createdOn, createdBy, modifiedby, modifiedOn);
+    public Ordine(int codiceOrdine, Timestamp dataOrdine, Utente utente, Carrello carrello, List<Videogioco> videogiochi) {
+        super ();
         this.codiceOrdine = codiceOrdine;
         this.dataOrdine = dataOrdine;
+        this.utente = utente;
+        this.carrello = carrello;
+        this.videogiochi = videogiochi;
     }
+
+
+    // deletedBy and deletedOn are not present in the constructor as they are null by default, when the entity is created, and will be modified once it has been deleted.
+
+
     public int getCodiceOrdine() {
         return codiceOrdine;
     }

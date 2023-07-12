@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+.properties
+spring.jpa.generate-dll=true
+spring.jpa.hibernate.ddl-auto=update
+
 ### STS ###
 .apt_generated
 .classpath

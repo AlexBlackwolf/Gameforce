@@ -8,6 +8,8 @@ public class Videogioco extends AuditableEntity{
     //cancellato annotation ID dato che l'id sarà preso dalla classe padre
 
     //modifiy to auto-incre, int
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int codiceVideogioco;
     private String titolo;
     private String genere;
