@@ -1,6 +1,7 @@
 package com.example.Gameforce.dto;
 
 import com.example.Gameforce.entity.Ordine;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class VideogiocoDTO extends AuditableDTO{
     private int codiceVideogioco;
@@ -11,7 +12,7 @@ public class VideogiocoDTO extends AuditableDTO{
     private double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-    private Ordine ordine;
+    private OrdineDTO ordine;
 
     public int getCodiceVideogioco() {
         return codiceVideogioco;
@@ -77,11 +78,11 @@ public class VideogiocoDTO extends AuditableDTO{
         this.requisitiDiSistema = requisitiDiSistema;
     }
 
-    public Ordine getOrdine() {
+    public OrdineDTO getOrdine() {
         return ordine;
     }
 
-    public void setOrdine(Ordine ordine) {
+    public void setOrdine(OrdineDTO ordine) {
         this.ordine = ordine;
     }
 }

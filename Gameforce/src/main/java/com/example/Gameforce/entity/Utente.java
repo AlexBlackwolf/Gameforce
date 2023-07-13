@@ -17,21 +17,32 @@ public class Utente extends AuditableEntity {
     private String password;
 
     @OneToMany(mappedBy = "utente")
-    @JsonManagedReference
+    @JsonManagedReference(value = "ordini-utente")
     private List<Ordine> ordiniUtente;
 
     @OneToOne
     @JoinColumn(name = "carrello_id")
     private Carrello carrello;
 
-    public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifiedBy, String modifiedOn) {
-        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
+    public Utente(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, Long codiceUtente, String nome, String cognome, String email, String password, List<Ordine> ordiniUtente, Carrello carrello) {
+        super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceUtente = codiceUtente;
         this.nome = nome;
-        this.cognome = cognome;//email non va criptata
+        this.cognome = cognome;
         this.email = email;
-        this.password=password;
+        this.password = password;
+        this.ordiniUtente = ordiniUtente;
+        this.carrello = carrello;
     }
+
+    //    public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifiedBy, String modifiedOn) {
+//        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
+//        this.codiceUtente = codiceUtente;
+//        this.nome = nome;
+//        this.cognome = cognome;//email non va criptata
+//        this.email = email;
+//        this.password=password;
+//    }
     public Utente (){
         super();
     }
@@ -96,5 +107,21 @@ public class Utente extends AuditableEntity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Ordine> getOrdiniUtente() {
+        return ordiniUtente;
+    }
+
+    public void setOrdiniUtente(List<Ordine> ordiniUtente) {
+        this.ordiniUtente = ordiniUtente;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 }

@@ -14,16 +14,16 @@ public class Ordine extends AuditableEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utente_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "ordini-utente")
     private Utente utente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carello_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "ordini-carrello")
     private Carrello carrello;
 
     @OneToMany(mappedBy = "ordine")
-    @JsonManagedReference
+    @JsonManagedReference(value = "ordini-videogioco")
     private List<Videogioco> videogiochi;
 
 
@@ -54,5 +54,29 @@ public class Ordine extends AuditableEntity {
 
     public void setDataOrdine(Timestamp dataOrdine) {
         this.dataOrdine = dataOrdine;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
+    }
+
+    public List<Videogioco> getVideogiochi() {
+        return videogiochi;
+    }
+
+    public void setVideogiochi(List<Videogioco> videogiochi) {
+        this.videogiochi = videogiochi;
     }
 }

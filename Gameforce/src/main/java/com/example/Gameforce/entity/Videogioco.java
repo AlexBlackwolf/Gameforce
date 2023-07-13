@@ -8,8 +8,8 @@ public class Videogioco extends AuditableEntity{
     //cancellato annotation ID dato che l'id sarà preso dalla classe padre
 
     //modifiy to auto-incre, int
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int codiceVideogioco;
     private String titolo;
     private String genere;
@@ -21,7 +21,7 @@ public class Videogioco extends AuditableEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordine_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "ordini-videogioco")
     private Ordine ordine;
 
     // Constructors (including default constructor)
@@ -33,8 +33,10 @@ public class Videogioco extends AuditableEntity{
     // fill constructor
 
     // add
-    public Videogioco(Long id, String createdOn, String createdBy, String modifiedBy, String modifiedOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
-        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
+
+
+    public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
+        super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
         this.genere = genere;
@@ -43,7 +45,20 @@ public class Videogioco extends AuditableEntity{
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.requisitiDiSistema = requisitiDiSistema;
+        this.ordine = ordine;
     }
+
+    //    public Videogioco(Long id, String createdOn, String createdBy, String modifiedBy, String modifiedOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
+//        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
+//        this.codiceVideogioco = codiceVideogioco;
+//        this.titolo = titolo;
+//        this.genere = genere;
+//        this.piattaforma = piattaforma;
+//        this.prezzo = prezzo;
+//        this.valutazione = valutazione;
+//        this.descrizione = descrizione;
+//        this.requisitiDiSistema = requisitiDiSistema;
+//    }
     public int getCodiceVideogioco() {
         return codiceVideogioco;
     }
@@ -108,4 +123,11 @@ public class Videogioco extends AuditableEntity{
         this.requisitiDiSistema = requisitiDiSistema;
     }
 
+    public Ordine getOrdine() {
+        return ordine;
+    }
+
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
 }

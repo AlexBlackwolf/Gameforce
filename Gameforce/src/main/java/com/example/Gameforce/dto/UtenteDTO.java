@@ -2,6 +2,7 @@ package com.example.Gameforce.dto;
 
 import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.entity.Ordine;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -11,8 +12,8 @@ public class UtenteDTO extends AuditableDTO{
     private String nome;
     private String cognome;
     private String email;
-    private List<Ordine> ordiniUtente;
-    private Carrello carrello;
+    private List<OrdineDTO> ordiniUtente;
+    private CarrelloDTO carrello;
 
     public Long getCodiceUtente() {
         return codiceUtente;
@@ -46,19 +47,19 @@ public class UtenteDTO extends AuditableDTO{
         this.email = email;
     }
 
-    public List<Ordine> getOrdiniUtente() {
+    public List<OrdineDTO> getOrdiniUtente() {
         return ordiniUtente;
     }
 
-    public void setOrdiniUtente(List<Ordine> ordiniUtente) {
+    public void setOrdiniUtente(List<OrdineDTO> ordiniUtente) {
         this.ordiniUtente = ordiniUtente;
     }
 
-    public Carrello getCarrello() {
+    public CarrelloDTO getCarrello() {
         return carrello;
     }
 
-    public void setCarrello(Carrello carrello) {
+    public void setCarrello(CarrelloDTO carrello) {
         this.carrello = carrello;
     }
 }

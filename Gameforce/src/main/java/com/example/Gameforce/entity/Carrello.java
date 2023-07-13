@@ -15,7 +15,7 @@ public class Carrello extends AuditableEntity{
 
 
     @OneToMany(mappedBy = "carrello")
-    @JsonManagedReference
+    @JsonManagedReference(value = "ordini-carrello")
     private List<Ordine> ordiniCarello;
 
     //aggiungere 4 colonne aggiuntive created by, created on, modified by, modified on
