@@ -17,7 +17,7 @@ public class Utente extends AuditableEntity {
     private String password;
 
     @OneToMany(mappedBy = "utente")
-    @JsonManagedReference(value = "ordini-utente")
+//    @JsonManagedReference(value = "ordini-utente") non vanno messe se non visualizziamo questi dati nei controller
     private List<Ordine> ordiniUtente;
 
     @OneToOne

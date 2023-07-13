@@ -14,16 +14,16 @@ public class Ordine extends AuditableEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utente_id", nullable = false)
-    @JsonBackReference(value = "ordini-utente")
+//    @JsonBackReference(value = "ordini-utente")
     private Utente utente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carello_id", nullable = false)
-    @JsonBackReference(value = "ordini-carrello")
+//    @JsonBackReference(value = "ordini-carrello")
     private Carrello carrello;
 
     @OneToMany(mappedBy = "ordine")
-    @JsonManagedReference(value = "ordini-videogioco")
+//    @JsonManagedReference(value = "ordini-videogioco")
     private List<Videogioco> videogiochi;
 
 

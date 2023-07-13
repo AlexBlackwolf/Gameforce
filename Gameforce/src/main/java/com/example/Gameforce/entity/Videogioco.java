@@ -21,7 +21,7 @@ public class Videogioco extends AuditableEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordine_id", nullable = false)
-    @JsonBackReference(value = "ordini-videogioco")
+//    @JsonBackReference(value = "ordini-videogioco")
     private Ordine ordine;
 
     // Constructors (including default constructor)

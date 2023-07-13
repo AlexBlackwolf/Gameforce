@@ -103,22 +103,22 @@ public class UtenteService{
                 uDto.setCognome(u.getCognome());
                 uDto.setEmail(u.getEmail());
 
-                List<Ordine> ordini = ordineRepo.findAll();
-
-                List<OrdineDTO> ordineMatches = new ArrayList<>();
-                for (Ordine o : ordini){
-                    if(o.getUtente().getId().equals(uDto.getId())){
-                        OrdineDTO match = new OrdineDTO();
-                        match.setId(o.getId());
-                        match.setCodiceOrdine(o.getCodiceOrdine());
-                        //match.setVideogiochi(o.getVideogiochi()); probabilmente questa non funzionerà al momento ma la lascio per sistemarla in seguito. bisogna inserire un altro ciclo for per riempirlo.
-
-                        ordineMatches.add(match);
-                    }
-                }
-                //manca il carrello. lo aggiungo in seguito se vogliamo far visualizzare anche quello al front end
-
-                uDto.setOrdiniUtente(ordineMatches);
+//                List<Ordine> ordini = ordineRepo.findAll();
+//
+//                List<OrdineDTO> ordineMatches = new ArrayList<>();
+//                for (Ordine o : ordini){
+//                    if(o.getUtente().getId().equals(uDto.getId())){
+//                        OrdineDTO match = new OrdineDTO();
+//                        match.setId(o.getId());
+//                        match.setCodiceOrdine(o.getCodiceOrdine());
+//                        //match.setVideogiochi(o.getVideogiochi()); probabilmente questa non funzionerà al momento ma la lascio per sistemarla in seguito. bisogna inserire un altro ciclo for per riempirlo.
+//
+//                        ordineMatches.add(match);
+//                    }
+//                }
+//                //manca il carrello. lo aggiungo in seguito se vogliamo far visualizzare anche quello al front end
+//
+//                uDto.setOrdiniUtente(ordineMatches);
                 utentiDTO.add(uDto);
             }
         }
@@ -173,6 +173,7 @@ public class UtenteService{
             utenteRepo.save(entity);});
     }
 
+    // possiamo cancellarla
     public Boolean isUtentePresent(Long id){
         Optional<Utente> u = getUtenteById(id);
         return u.isPresent();

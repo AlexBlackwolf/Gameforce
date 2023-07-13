@@ -40,11 +40,19 @@ public class HelloController {
 
     @GetMapping(value = "dto/get/utente/{id}")
     public ResponseEntity<UtenteDTO> getUtenteDto(@PathVariable Long id){
-        if (utenteService.isUtentePresent(id)){
-            return ResponseEntity.ok().body(utenteService.getUtenteDto(id));
+        UtenteDTO uDto = utenteService.getUtenteDto(id);
+        if (uDto != null){
+            return ResponseEntity.ok().body(uDto);
         } else {
             return ResponseEntity.notFound().build();
         }
+
+
+//        if (utenteService.isUtentePresent(id)){
+//            return ResponseEntity.ok().body(utenteService.getUtenteDto(id));
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
     }
 
     @PutMapping(value = "/put/update/{id}")
