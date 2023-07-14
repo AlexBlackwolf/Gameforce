@@ -1,14 +1,17 @@
 package com.example.Gameforce.service;
 
+import com.example.Gameforce.dto.LoginDTO;
 import com.example.Gameforce.dto.OrdineDTO;
 import com.example.Gameforce.dto.UtenteDTO;
 import com.example.Gameforce.entity.Ordine;
 import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.repository.OrdineRepo;
 import com.example.Gameforce.repository.UtenteRepo;
+import com.example.Gameforce.utils.DataEncryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,44 @@ public class UtenteService{
 
 
     //gestire gli optional
+    public Utente registerUtente(@Valid Utente utente){
+        if(utenteRepo.findByEmail(utente.getEmail()) != null){
+            throw new RuntimeException("L'email è già registrata");
+        }
+        return utenteRepo.save(utente);
+    }
+
+    private void encryptPassword(String password) {
+        try {
+            if(password ==null){
+            }
+            else{
+                DataEncryption.encrypt(password);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Utente login (LoginDTO loginDTO) {
+        Optional<Utente> userToLogin = Optional.ofNullable(utenteRepo.findByEmail(loginDTO.getEmail()));
+
+        if (userToLogin.isEmpty()){
+            throw new RuntimeException("email o password errata!");
+        }
+        if (userToLogin.get().getPassword().equals(loginDTO.getPassword())) {
+            userToLogin.get().setLoginStatus(true);
+            return utenteRepo.save(userToLogin.get());
+        }
+        else
+            throw new RuntimeException("email o password errata!");
+    }
+    public Utente logout (Long id){
+        Optional<Utente> userToLogout = utenteRepo.findById(id);
+        userToLogout.get().setLoginStatus(false);
+        return utenteRepo.save(userToLogout.get());
+    }
 
 
     public void addUtente(Utente utente){
