@@ -34,6 +34,7 @@ public class UtenteService{
         if(utenteRepo.findByEmail(utente.getEmail()) != null){
             throw new RuntimeException("L'email è già registrata");
         }
+        this.encryptPassword(utente.getPassword());
         return utenteRepo.save(utente);
     }
 
