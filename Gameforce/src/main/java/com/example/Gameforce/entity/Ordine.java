@@ -26,6 +26,9 @@ public class Ordine extends AuditableEntity {
     @JsonManagedReference(value = "ordini-videogioco")
     private List<Videogioco> videogiochi;
 
+    public Ordine (){
+        super();
+    }
 
     public Ordine(int codiceOrdine, Timestamp dataOrdine, Utente utente, Carrello carrello, List<Videogioco> videogiochi) {
         super ();
