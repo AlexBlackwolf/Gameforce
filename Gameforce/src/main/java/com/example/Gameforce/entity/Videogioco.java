@@ -48,6 +48,10 @@ public class Videogioco extends AuditableEntity{
         this.ordine = ordine;
     }
 
+    public Videogioco (){
+        super();
+    }
+
     //    public Videogioco(Long id, String createdOn, String createdBy, String modifiedBy, String modifiedOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema,  String deletedBy, String deletedOn) {
 //        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
 //        this.codiceVideogioco = codiceVideogioco;

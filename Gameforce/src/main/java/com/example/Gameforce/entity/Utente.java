@@ -3,8 +3,10 @@ package com.example.Gameforce.entity;//
 import com.example.Gameforce.utils.DataEncryption;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.aspectj.weaver.ast.Or;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,8 +15,15 @@ public class Utente extends AuditableEntity {
     private Long codiceUtente;
     private String nome;
     private String cognome;
+    @Email(message = "l'email non è valida")
+    @NotBlank(message = "questo campo è obbligatorio")
     private String email;
+
+    @NotBlank(message = "questo campo è obbligatorio")
+    @Size(min=7 , message = "la password deve contenere almeno 7 caratteri!")
     private String password;
+    private Double saldo= 0d;
+    private Boolean loginStatus=false;
 
     @OneToMany(mappedBy = "utente")
 //    @JsonManagedReference(value = "ordini-utente") non vanno messe se non visualizziamo questi dati nei controller
@@ -24,7 +33,7 @@ public class Utente extends AuditableEntity {
     @JoinColumn(name = "carrello_id")
     private Carrello carrello;
 
-    public Utente(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, Long codiceUtente, String nome, String cognome, String email, String password, List<Ordine> ordiniUtente, Carrello carrello) {
+    public Utente(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, Long codiceUtente, String nome, String cognome, String email, String password, List<Ordine> ordiniUtente, Carrello carrello, Double saldo, Boolean loginStatus) {
         super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceUtente = codiceUtente;
         this.nome = nome;
@@ -33,36 +42,28 @@ public class Utente extends AuditableEntity {
         this.password = password;
         this.ordiniUtente = ordiniUtente;
         this.carrello = carrello;
+        this.saldo=saldo;
+        this.loginStatus=loginStatus;
+    }
+    public Double getSaldo() {
+        return saldo;
     }
 
-    //    public Utente(Long id, Long codiceUtente, String nome, String cognome, String email, String password, String createdBy, String createdOn, String modifiedBy, String modifiedOn) {
-//        super(id, createdOn, createdBy, modifiedBy, modifiedOn);
-//        this.codiceUtente = codiceUtente;
-//        this.nome = nome;
-//        this.cognome = cognome;//email non va criptata
-//        this.email = email;
-//        this.password=password;
-//    }
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+    public Boolean getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(Boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
     public Utente (){
         super();
     }
-    // check if password is not null and if exist encrypt the password
-    //gli oggetti vengono creati nel database quando passano dal service
-    //Entity mapping
-    //muoverla nel service
-    private void extracted(String password) {
-        try {
-            if(password ==null){
-                }
-            else{
-            this.password = DataEncryption.encrypt(password);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public Long getCodiceUtente() {
         return codiceUtente;
     }
@@ -99,14 +100,8 @@ public class Utente extends AuditableEntity {
         return password;
     }
 
-    //aggiunto encrypt della password in caso di set
-    // refactoring
     public void setPassword(String password) {
-        try {
-            this.password = DataEncryption.encrypt(password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.password = password;
     }
 
     public List<Ordine> getOrdiniUtente() {
