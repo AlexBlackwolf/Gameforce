@@ -3,6 +3,11 @@ package com.example.Gameforce.Controller;
 import com.example.Gameforce.dto.UtenteDTO;
 import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.service.UtenteService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jdk.jfr.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +17,14 @@ import java.util.List;
 
 @RestController
 public class HelloController {
+//    http://localhost:8080/swagger-ui/index.html. indirizzo per swagger
     @Autowired
     private UtenteService utenteService;
 
-
+    private String description;
     @PostMapping(value = "/post/utente")
+    @Operation(description = "Questo medoto inserisce un nuovo utente nel database")
+    @ApiResponse
     public ResponseEntity<String> addUtente(Utente utente){
         utenteService.addUtente(utente);
         return ResponseEntity.ok("Utente added!");
