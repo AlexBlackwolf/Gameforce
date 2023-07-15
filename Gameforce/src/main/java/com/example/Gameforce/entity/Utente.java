@@ -23,7 +23,7 @@ public class Utente extends AuditableEntity {
     @Size(min=7 , message = "la password deve contenere almeno 7 caratteri!")
     private String password;
     private Double saldo= 0d;
-    private Boolean loginStatus=false;
+    private Boolean loginStatus=false; // Considerare l'uso di un enumerato  invece di un booleano
 
     @OneToMany(mappedBy = "utente")
     @JsonManagedReference(value = "ordini-utente")
