@@ -15,10 +15,6 @@ public class VideogiocoService {
     @Autowired
     public VideogiocoService(VideogiocoRepo videogiocoRepo) {this.videogiocoRepo = videogiocoRepo;}
 
-    public void addVideogioco(Videogioco videogioco) {
-        videogiocoRepo.save(videogioco);
-    }
-
     public void addVideogiocoDto(VideogiocoDTO videogioco) {
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
@@ -41,13 +37,13 @@ public class VideogiocoService {
             Videogioco v = videogioco.get();
             vDto.setId(v.getId());
             vDto.setCodiceVideogioco(v.getCodiceVideogioco());
-            v.setGenere(v.getGenere());
-            v.setTitolo(v.getTitolo());
-            v.setPiattaforma(v.getPiattaforma());
-            v.setPrezzo(v.getPrezzo());
-            v.setValutazione(v.getValutazione());
-            v.setDescrizione(v.getDescrizione());
-            v.setRequisitiDiSistema(v.getRequisitiDiSistema());
+            vDto.setGenere(v.getGenere());
+            vDto.setTitolo(v.getTitolo());
+            vDto.setPiattaforma(v.getPiattaforma());
+            vDto.setPrezzo(v.getPrezzo());
+            vDto.setValutazione(v.getValutazione());
+            vDto.setDescrizione(v.getDescrizione());
+            vDto.setRequisitiDiSistema(v.getRequisitiDiSistema());
             return vDto;
         }
         return null;
