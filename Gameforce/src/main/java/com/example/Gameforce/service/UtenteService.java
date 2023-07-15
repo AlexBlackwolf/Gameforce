@@ -18,12 +18,8 @@ import java.util.Optional;
 
 @Service
 public class UtenteService{
-
-    private UtenteRepo utenteRepo;
     @Autowired
-    public UtenteService(UtenteRepo utenteRepo) {
-        this.utenteRepo = utenteRepo;
-    }
+    private UtenteRepo utenteRepo;
 
     @Autowired
     private OrdineRepo ordineRepo;
