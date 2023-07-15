@@ -18,7 +18,7 @@ public class VideogiocoService {
     public void addVideogiocoDto(VideogiocoDTO videogioco) {
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        v.setGenere(videogioco.getGenere());
+        videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
         v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
@@ -37,7 +37,7 @@ public class VideogiocoService {
             Videogioco v = videogioco.get();
             vDto.setId(v.getId());
             vDto.setCodiceVideogioco(v.getCodiceVideogioco());
-            vDto.setGenere(v.getGenere());
+            vDto.setGeneri(v.getGeneri());
             vDto.setTitolo(v.getTitolo());
             vDto.setPiattaforma(v.getPiattaforma());
             vDto.setPrezzo(v.getPrezzo());
@@ -60,7 +60,7 @@ public class VideogiocoService {
         }
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        v.setGenere(videogioco.getGenere());
+        videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
         v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());

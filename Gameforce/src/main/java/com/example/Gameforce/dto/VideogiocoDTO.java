@@ -1,12 +1,16 @@
 package com.example.Gameforce.dto;
 
+import com.example.Gameforce.Enum.VideogiocoEnum;
 import com.example.Gameforce.entity.Ordine;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideogiocoDTO extends AuditableDTO{
     private int codiceVideogioco;
     private String titolo;
-    private String genere;
+    private List<VideogiocoEnum> generi = new ArrayList<>();
     private String piattaforma;
     private double prezzo;
     private double valutazione;
@@ -30,12 +34,12 @@ public class VideogiocoDTO extends AuditableDTO{
         this.titolo = titolo;
     }
 
-    public String getGenere() {
-        return genere;
+    public List<VideogiocoEnum> getGeneri() {
+        return generi;
     }
 
-    public void setGenere(String genere) {
-        this.genere = genere;
+    public void setGeneri(List<VideogiocoEnum> generi) {
+        this.generi = generi;
     }
 
     public String getPiattaforma() {

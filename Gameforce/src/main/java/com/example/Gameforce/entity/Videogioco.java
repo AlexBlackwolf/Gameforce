@@ -1,6 +1,10 @@
 package com.example.Gameforce.entity;
+import com.example.Gameforce.Enum.VideogiocoEnum;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "videogioco")
@@ -12,12 +16,12 @@ public class Videogioco extends AuditableEntity{
 //    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int codiceVideogioco;
     private String titolo;
-    private String genere;
     private String piattaforma;
     private double prezzo;
     private double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
+    private List<VideogiocoEnum> generi = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordine_id", nullable = false)
@@ -35,11 +39,11 @@ public class Videogioco extends AuditableEntity{
     // add
 
 
-    public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, String genere, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
+    public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, List<VideogiocoEnum>generi, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
         super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
-        this.genere = genere;
+        this.generi = generi;
         this.piattaforma = piattaforma;
         this.prezzo = prezzo;
         this.valutazione = valutazione;
@@ -79,12 +83,14 @@ public class Videogioco extends AuditableEntity{
         this.titolo = titolo;
     }
 
-    public String getGenere() {
-        return genere;
+    public List<VideogiocoEnum> getGeneri() {
+        return generi;
     }
 
-    public void setGenere(String genere) {
-        this.genere = genere;
+    public void removeGeneri(VideogiocoEnum videogiocoEnumRemover){generi.remove(videogiocoEnumRemover);
+    }
+
+    public void addGeneri(VideogiocoEnum videogiocoEnumAdder){generi.add(videogiocoEnumAdder);
     }
 
     public String getPiattaforma() {
