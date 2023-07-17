@@ -192,7 +192,7 @@ public class UtenteService{
         utenteRepo.save(u);
     }
 
-    public void updateUtenteDto(UtenteDTO utente){
+    public Utente updateUtenteDto(UtenteDTO utente){
 
         if (utente.getId()==null){
             throw new RuntimeException("Utente non trovato");
@@ -204,13 +204,14 @@ public class UtenteService{
         u.setCognome(utente.getCognome());
         u.setEmail(utente.getEmail());
 
-        utenteRepo.save(u);
+        return utenteRepo.save(u);
     }
 
     public void logicalDelete(Long id){
         Optional<Utente> optionalEntity = utenteRepo.findById(id);
         optionalEntity.ifPresent(entity->{entity.setDeleted(true);
             utenteRepo.save(entity);});
+
     }
 
     public Boolean isUtentePresent(Long id){
