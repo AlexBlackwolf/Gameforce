@@ -11,11 +11,12 @@ import com.example.Gameforce.repository.OrdineRepo;
 import com.example.Gameforce.repository.UtenteRepo;
 import com.example.Gameforce.repository.VideogiocoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class OrdineService {
     private OrdineRepo ordineRepo;
     @Autowired

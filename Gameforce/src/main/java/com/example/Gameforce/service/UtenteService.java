@@ -217,4 +217,15 @@ public class UtenteService{
         Optional<Utente> u = getUtenteById(id);
         return u.isPresent();
     }
+    public void aggiungiSaldo(Long id, double saldo) throws Exception {
+        Optional<Utente> optionalUtente = utenteRepo.findById(id);
+        if (optionalUtente.isPresent()) {
+            Utente utente = optionalUtente.get();
+            double newSaldo = utente.getSaldo() + saldo;
+            utente.setSaldo(newSaldo);
+            utenteRepo.save(utente);
+        } else {
+            throw new Exception("Utente not found with ID: " + id);
+        }
+    }
 }
