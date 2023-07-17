@@ -1,6 +1,7 @@
 package com.example.Gameforce.dto;
 
 import com.example.Gameforce.entity.Carrello;
+import com.example.Gameforce.entity.Ordine;
 import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.entity.Videogioco;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -16,6 +17,14 @@ public class OrdineDTO extends AuditableDTO{
     private UtenteDTO utente;
     private CarrelloDTO carrello;
     private List<VideogiocoDTO> videogiochi;
+
+    public OrdineDTO() {
+        // No-args constructor
+    }
+
+    public OrdineDTO(Ordine ordine) {
+        super();
+    }
 
     public int getCodiceOrdine() {
         return codiceOrdine;
