@@ -9,6 +9,7 @@ import com.example.Gameforce.repository.OrdineRepo;
 import com.example.Gameforce.repository.UtenteRepo;
 import com.example.Gameforce.utils.DataEncryption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -47,10 +48,12 @@ public class UtenteService{
         }
     }
 
-    public Utente login (LoginDTO loginDTO) {
+    //Trasformare il risultato in una ResponseEntity, così da non usare le throw e i runtime
+    public Utente login(LoginDTO loginDTO) {
         Optional<Utente> userToLogin = Optional.ofNullable(utenteRepo.findByEmail(loginDTO.getEmail()));
 
         if (userToLogin.isEmpty()){
+
             throw new RuntimeException("email o password errata!");
         }
         if (userToLogin.get().getPassword().equals(loginDTO.getPassword())) {
@@ -60,7 +63,7 @@ public class UtenteService{
         else
             throw new RuntimeException("email o password errata!");
     }
-    public Utente logout (Long id){
+    public Utente logout(Long id){
         Optional<Utente> userToLogout = utenteRepo.findById(id);
         userToLogout.get().setLoginStatus(false);
         return utenteRepo.save(userToLogout.get());
