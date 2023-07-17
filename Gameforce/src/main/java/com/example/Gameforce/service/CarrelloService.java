@@ -8,6 +8,7 @@ import com.example.Gameforce.repository.CarrelloRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,23 +28,29 @@ public class CarrelloService {
         c.setCodiceCarrello(carrello.getCodiceCarrello());
         carrelloRepo.save(c);
     }
-     //Manca il metodo getCarrelliDto
     public List<Carrello> getCarrelli() {
         return carrelloRepo.findAll();
     }
+    public List<CarrelloDTO> getCarrelliDto() {
+        List<Carrello> carrelli = carrelloRepo.findAll();
+        List<CarrelloDTO> cDTO = new ArrayList<>();
 
+        for (Carrello carrello : carrelli) {
+            CarrelloDTO carrelloDTO = new CarrelloDTO();
+            carrelloDTO.setCodiceCarrello(carrello.getCodiceCarrello());
+            cDTO.add(carrelloDTO);
+        }
+        return cDTO;
+    }
     public Optional<Carrello> getCarrelloById(Long id) {
         return carrelloRepo.findById(id);
     }
-
     public void deleteCarrello(Carrello carrello) {
         carrelloRepo.delete(carrello);
     }
-
     public void deleteCarrelloById(Long id) {
         carrelloRepo.deleteById(id);
     }
-
     public void updateCarrello(Carrello carrello){
         if (carrello.getId()==null){
             throw new RuntimeException("Carrello non trovato");
