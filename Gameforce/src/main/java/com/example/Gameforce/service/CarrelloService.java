@@ -1,9 +1,7 @@
 package com.example.Gameforce.service;
 
 import com.example.Gameforce.dto.CarrelloDTO;
-import com.example.Gameforce.dto.UtenteDTO;
 import com.example.Gameforce.entity.Carrello;
-import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.repository.CarrelloRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,11 +53,8 @@ public class CarrelloService {
         if (carrello.getId()==null){
             throw new RuntimeException("Carrello non trovato");
         }
-        Carrello c = new Carrello();
-        c.setId(carrello.getId());
-        c.setCodiceCarrello(carrello.getCodiceCarrello());
 
-        carrelloRepo.save(c);
+        carrelloRepo.save(carrello);
     }
     public void updateCarrelloDto(CarrelloDTO carrello){
 

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/ordini")
+@RequestMapping("/ordine")
 public class OrdineController {
 
     private final OrdineService ordineService;
@@ -18,14 +18,14 @@ public class OrdineController {
         this.ordineService = ordineService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> addOrdine(@RequestBody OrdineDTO ordineDTO) {
+    @PostMapping("/add-dto-ordine")
+    public ResponseEntity<?> addOrdine(@RequestBody OrdineDTO ordineDTO) {
         ordineService.addOrdineDto(ordineDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrdineDTO> getOrdine(@PathVariable Long id) {
+    @GetMapping("/get-dto-ordine")
+    public ResponseEntity<?> getOrdine(@PathVariable Long id) {
         OrdineDTO ordineDTO = ordineService.getOrdineById(id)
                 .map(ordine -> new OrdineDTO(ordine)) // Convert Ordine to OrdineDTO if present
                 .orElse(null);
@@ -36,14 +36,14 @@ public class OrdineController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrdine(@PathVariable Long id) {
+    @DeleteMapping("/delete-id-ordine")
+    public ResponseEntity<?> deleteOrdine(@PathVariable Long id) {
         ordineService.deleteOrdineById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateOrdine(@PathVariable Long id, @RequestBody OrdineDTO ordineDTO) {
+    @PutMapping("/update-dto-ordine")
+    public ResponseEntity<?> updateOrdine(@PathVariable Long id, @RequestBody OrdineDTO ordineDTO) {
         ordineDTO.setId(id);
         try {
             ordineService.updateOrdineDto(id, ordineDTO);
@@ -53,14 +53,14 @@ public class OrdineController {
         }
     }
 
-    @PatchMapping("/{id}/logical-delete")
-    public ResponseEntity<Void> logicalDeleteOrdine(@PathVariable Long id) {
+    @PatchMapping("/ordine/logical-delete")
+    public ResponseEntity<?> logicalDeleteOrdine(@PathVariable Long id) {
         ordineService.logicalDelete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> isOrdinePresent(@PathVariable Long id) {
+    @GetMapping("/ordine/exists")
+    public ResponseEntity<?> isOrdinePresent(@PathVariable Long id) {
         Boolean isPresent = ordineService.isOrdinePresent(id);
         return ResponseEntity.ok(isPresent);
     }

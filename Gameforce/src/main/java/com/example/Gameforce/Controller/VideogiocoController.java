@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/videogames")
+@RequestMapping("/videogioco")
 public class VideogiocoController {
 
     private final VideogiocoService videogiocoService;
@@ -18,14 +18,14 @@ public class VideogiocoController {
         this.videogiocoService = videogiocoService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> addVideogioco(@RequestBody VideogiocoDTO videogiocoDTO) {
+    @PostMapping("/add-videogioco")
+    public ResponseEntity<?> addVideogioco(@RequestBody VideogiocoDTO videogiocoDTO) {
         videogiocoService.addVideogiocoDto(videogiocoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VideogiocoDTO> getVideogioco(@PathVariable Long id) {
+    @GetMapping("/get-videogioco")
+    public ResponseEntity<?> getVideogioco(@PathVariable Long id) {
         VideogiocoDTO videogiocoDTO = videogiocoService.getVidegiocoDto(id);
         if (videogiocoDTO != null) {
             return ResponseEntity.ok(videogiocoDTO);
@@ -34,14 +34,14 @@ public class VideogiocoController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVideogioco(@PathVariable Long id) {
+    @DeleteMapping("/delete-videogioco")
+    public ResponseEntity<?> deleteVideogioco(@PathVariable Long id) {
         videogiocoService.deleteVideogiocoById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateVideogioco(@PathVariable Long id, @RequestBody VideogiocoDTO videogiocoDTO) {
+    @PutMapping("/update-videogioco")
+    public ResponseEntity<?> updateVideogioco(@PathVariable Long id, @RequestBody VideogiocoDTO videogiocoDTO) {
         videogiocoDTO.setId(id);
         try {
             videogiocoService.updateVideogiocoDto(videogiocoDTO);
@@ -51,14 +51,14 @@ public class VideogiocoController {
         }
     }
 
-    @PatchMapping("/{id}/logical-delete")
-    public ResponseEntity<Void> logicalDeleteVideogioco(@PathVariable Long id) {
+    @PatchMapping("/logicalDelete-videogioco")
+    public ResponseEntity<?> logicalDeleteVideogioco(@PathVariable Long id) {
         videogiocoService.logicalDelete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> isVideogiocoPresent(@PathVariable Long id) {
+    @GetMapping("/exists-videogioco")
+    public ResponseEntity<?> isVideogiocoPresent(@PathVariable Long id) {
         Boolean isPresent = videogiocoService.isVidegiocoPresent(id);
         return ResponseEntity.ok(isPresent);
     }
