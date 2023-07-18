@@ -27,7 +27,7 @@ public class Videogioco extends AuditableEntity{
     private List<VideogiocoEnum> generi = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ordine_id", nullable = false)
+    @JoinColumn(name = "ordine_id")
     @JsonBackReference(value = "ordini-videogioco")
     private Ordine ordine;
 
@@ -95,6 +95,7 @@ public class Videogioco extends AuditableEntity{
 
     public void addGeneri(VideogiocoEnum videogiocoEnumAdder){generi.add(videogiocoEnumAdder);
     }
+    public void addPiattaforma (PiattaformaEnum piattaformaEnumAdder){piattaforma.add(piattaformaEnumAdder);}
     public List<PiattaformaEnum> getPiattaforma() {
         return piattaforma;
     }

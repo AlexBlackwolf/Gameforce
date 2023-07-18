@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideogiocoDTO extends AuditableDTO{
-    private int codiceVideogioco;
+    private Integer codiceVideogioco;
     private String titolo;
     private List<VideogiocoEnum> generi = new ArrayList<>();
     private List<PiattaformaEnum> piattaforma = new ArrayList<>();
-    private double prezzo;
-    private double valutazione;
+    private Double prezzo;
+    private Double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-    private OrdineDTO ordine;
+//    private OrdineDTO ordine;
 
     public int getCodiceVideogioco() {
         return codiceVideogioco;
@@ -83,11 +83,11 @@ public class VideogiocoDTO extends AuditableDTO{
         this.requisitiDiSistema = requisitiDiSistema;
     }
 
-    public OrdineDTO getOrdine() {
-        return ordine;
-    }
+//    public OrdineDTO getOrdine() {
+//        return ordine;
+//    }
 
-    public void setOrdine(OrdineDTO ordine) {
-        this.ordine = ordine;
-    }
+//    public void setOrdine(OrdineDTO ordine) {
+//        this.ordine = ordine;
+//    }
 }

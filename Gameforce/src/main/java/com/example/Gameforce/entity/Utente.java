@@ -26,7 +26,7 @@ public class Utente extends AuditableEntity {
     private Boolean loginStatus=false; // Considerare l'uso di un enumerato  invece di un booleano
 
     @OneToMany(mappedBy = "utente")
-    @JsonManagedReference(value = "ordini-utente")
+    @JsonManagedReference(value = "ordini-utente")// non vanno messe se non visualizziamo questi dati nei controller
     private List<Ordine> ordiniUtente;
 
     @OneToOne

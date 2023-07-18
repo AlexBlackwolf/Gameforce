@@ -80,14 +80,13 @@ public class UtenteService{
          u.setNome(utente.getNome());
          u.setCognome(utente.getCognome());
          u.setEmail(utente.getEmail());
-        utenteRepo.save(u);
+         utenteRepo.save(u);
     }
 
     public Optional<Utente> getUtenteById(Long id){
         return utenteRepo.findById(id);
     }
 
-    // ho aggiunto il metodo findById con il dto.
     public UtenteDTO getUtenteDto(Long id){
         Optional<Utente> utente = utenteRepo.findById(id);
         if (utente.isPresent()){
@@ -98,28 +97,11 @@ public class UtenteService{
             uDto.setNome(u.getNome());
             uDto.setCognome(u.getCognome());
             uDto.setEmail(u.getEmail());
-//            List<Ordine> ordini = ordineRepo.findAll();
-//
-//            List<OrdineDTO> ordineMatches = new ArrayList<>();
-//            for (Ordine o : ordini){
-//                if(o.getUtente().getId().equals(uDto.getId())){
-//                    OrdineDTO match = new OrdineDTO();
-//                    match.setId(o.getId());
-//                    match.setCodiceOrdine(o.getCodiceOrdine());
-//                    //match.setVideogiochi(o.getVideogiochi()); probabilmente questa non funzionerà al momento ma la lascio per sistemarla in seguito. bisogna inserire un altro ciclo for per riempirlo.
-//
-//                    ordineMatches.add(match);
-//                }
-//            }
-//            //manca il carrello. lo aggiungo in seguito se vogliamo far visualizzare anche quello al front end
-//
-//            uDto.setOrdiniUtente(ordineMatches);
 
             return uDto;
         }
 
-        return null;// per far tornare il 404 abbiamo creato il metodo in fondo. come possiamo semplificare?
-
+        return null;
     }
 
     // questo metodo torna tutti gli utenti e non solo uno. andrebbe aggiunto il metodo findByID. lo ho modificato in getUtenti
@@ -143,27 +125,11 @@ public class UtenteService{
                 uDto.setCognome(u.getCognome());
                 uDto.setEmail(u.getEmail());
 
-                List<Ordine> ordini = ordineRepo.findAll();
-
-                List<OrdineDTO> ordineMatches = new ArrayList<>();
-                for (Ordine o : ordini){
-                    if(o.getUtente().getId().equals(uDto.getId())){
-                        OrdineDTO match = new OrdineDTO();
-                        match.setId(o.getId());
-                        match.setCodiceOrdine(o.getCodiceOrdine());
-                        //match.setVideogiochi(o.getVideogiochi()); probabilmente questa non funzionerà al momento ma la lascio per sistemarla in seguito. bisogna inserire un altro ciclo for per riempirlo.
-
-                        ordineMatches.add(match);
-                    }
-                }
-                //manca il carrello. lo aggiungo in seguito se vogliamo far visualizzare anche quello al front end
-
-                uDto.setOrdiniUtente(ordineMatches);
                 utentiDTO.add(uDto);
             }
         }
-
         return utentiDTO;
+
     }
 
     public void deleteUtente(Utente utente){
@@ -214,10 +180,6 @@ public class UtenteService{
 
     }
 
-    public Boolean isUtentePresent(Long id){
-        Optional<Utente> u = getUtenteById(id);
-        return u.isPresent();
-    }
     public void aggiungiSaldo(Long id, double saldo) throws Exception {
         Optional<Utente> optionalUtente = utenteRepo.findById(id);
         if (optionalUtente.isPresent()) {

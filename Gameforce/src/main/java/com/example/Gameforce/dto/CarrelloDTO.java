@@ -8,7 +8,7 @@ import java.util.List;
 public class CarrelloDTO extends AuditableDTO{
     private int codiceCarrello;
 
-    private List<Ordine> ordiniCarello;
+    private List<OrdineDTO> ordiniCarello;
 
     public int getCodiceCarrello() {
         return codiceCarrello;
@@ -18,11 +18,11 @@ public class CarrelloDTO extends AuditableDTO{
         this.codiceCarrello = codiceCarrello;
     }
 
-    public List<Ordine> getOrdiniCarello() {
+    public List<OrdineDTO> getOrdiniCarello() {
         return ordiniCarello;
     }
 
-    public void setOrdiniCarello(List<Ordine> ordiniCarello) {
+    public void setOrdiniCarello(List<OrdineDTO> ordiniCarello) {
         this.ordiniCarello = ordiniCarello;
     }
 }
