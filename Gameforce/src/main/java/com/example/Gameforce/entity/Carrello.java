@@ -11,7 +11,7 @@ public class Carrello extends AuditableEntity{
     private int codiceCarrello;
 
     @OneToMany(mappedBy = "carrello")
-//    @JsonManagedReference(value = "ordini-carrello")
+    @JsonManagedReference(value = "ordini-carrello")
     private List<Ordine> ordiniCarello;
 
     public Carrello(Long id, int codiceCarrello, String createdOn, String createdBy, String modifiedBy, String modifiedOn) {

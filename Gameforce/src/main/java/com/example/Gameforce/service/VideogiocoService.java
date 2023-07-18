@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class VideogiocoService {
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
         videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
+        videogioco.getPiattaforma().forEach(p->v.addPiattaforma(p));
         v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
         v.setValutazione(videogioco.getValutazione());
@@ -38,7 +40,7 @@ public class VideogiocoService {
         return videogiocoRepo.findById(id);
     }
 
-    public VideogiocoDTO getVidegiocoDto(Long id) {
+    public VideogiocoDTO getVidegiocoDtoById(Long id) {
         Optional<Videogioco> videogioco = videogiocoRepo.findById(id);
         if (videogioco.isPresent()) {
             VideogiocoDTO vDto = new VideogiocoDTO();
@@ -54,6 +56,33 @@ public class VideogiocoService {
             vDto.setRequisitiDiSistema(v.getRequisitiDiSistema());
             return vDto;
         }
+        return null;
+    }
+
+    public List<VideogiocoDTO> getAllVideogioco(){
+        List<Videogioco> videogiochi = videogiocoRepo.findAll();
+
+        List<VideogiocoDTO> videogiochiDto = new ArrayList<>();
+
+        VideogiocoDTO vDto = new VideogiocoDTO();
+
+        for (Videogioco v : videogiochi){
+            if (!videogiochi.isEmpty()){
+                vDto.setId(v.getId());
+                vDto.setCodiceVideogioco(v.getCodiceVideogioco());
+                vDto.setTitolo(v.getTitolo());
+                vDto.setGeneri(v.getGeneri());
+                vDto.setPiattaforma(v.getPiattaforma());
+                vDto.setPrezzo(v.getPrezzo());
+                vDto.setValutazione(v.getValutazione());
+                vDto.setDescrizione(v.getDescrizione());
+                vDto.setRequisitiDiSistema(v.getRequisitiDiSistema());
+
+                videogiochiDto.add(vDto);
+                return videogiochiDto;
+            }
+        }
+
         return null;
     }
 
@@ -87,11 +116,6 @@ public class VideogiocoService {
             entity.setDeleted(true);
             videogiocoRepo.save(entity);
         });
-    }
-
-    public Boolean isVidegiocoPresent(Long id) {
-        Optional<Videogioco> v = getVideogiochiById(id);
-        return v.isPresent();
     }
 
     public ResponseEntity<?> makeValutation(Double valutazione, Videogioco v) {

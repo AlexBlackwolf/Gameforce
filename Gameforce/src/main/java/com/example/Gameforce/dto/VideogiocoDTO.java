@@ -1,5 +1,6 @@
 package com.example.Gameforce.dto;
 
+import com.example.Gameforce.Enum.PiattaformaEnum;
 import com.example.Gameforce.Enum.VideogiocoEnum;
 import com.example.Gameforce.entity.Ordine;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -8,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideogiocoDTO extends AuditableDTO{
-    private int codiceVideogioco;
+    private Integer codiceVideogioco;
     private String titolo;
     private List<VideogiocoEnum> generi = new ArrayList<>();
-    private String piattaforma;
-    private double prezzo;
-    private double valutazione;
+    private List<PiattaformaEnum> piattaforma = new ArrayList<>();
+    private Double prezzo;
+    private Double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-    private OrdineDTO ordine;
+//    private OrdineDTO ordine;
 
     public int getCodiceVideogioco() {
         return codiceVideogioco;
@@ -42,11 +43,11 @@ public class VideogiocoDTO extends AuditableDTO{
         this.generi = generi;
     }
 
-    public String getPiattaforma() {
+    public List<PiattaformaEnum> getPiattaforma() {
         return piattaforma;
     }
 
-    public void setPiattaforma(String piattaforma) {
+    public void setPiattaforma(List<PiattaformaEnum> piattaforma) {
         this.piattaforma = piattaforma;
     }
 
@@ -82,11 +83,11 @@ public class VideogiocoDTO extends AuditableDTO{
         this.requisitiDiSistema = requisitiDiSistema;
     }
 
-    public OrdineDTO getOrdine() {
-        return ordine;
-    }
+//    public OrdineDTO getOrdine() {
+//        return ordine;
+//    }
 
-    public void setOrdine(OrdineDTO ordine) {
-        this.ordine = ordine;
-    }
+//    public void setOrdine(OrdineDTO ordine) {
+//        this.ordine = ordine;
+//    }
 }

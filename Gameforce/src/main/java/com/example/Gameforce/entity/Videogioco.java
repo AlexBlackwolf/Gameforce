@@ -1,4 +1,5 @@
 package com.example.Gameforce.entity;
+import com.example.Gameforce.Enum.PiattaformaEnum;
 import com.example.Gameforce.Enum.VideogiocoEnum;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -16,7 +17,9 @@ public class Videogioco extends AuditableEntity{
 //    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int codiceVideogioco;
     private String titolo;
-    private String piattaforma;
+
+
+    private List<PiattaformaEnum> piattaforma = new ArrayList<>();
     private double prezzo;
     private double valutazione;
     private String descrizione;
@@ -24,8 +27,8 @@ public class Videogioco extends AuditableEntity{
     private List<VideogiocoEnum> generi = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ordine_id", nullable = false)
-//    @JsonBackReference(value = "ordini-videogioco")
+    @JoinColumn(name = "ordine_id")
+    @JsonBackReference(value = "ordini-videogioco")
     private Ordine ordine;
 
     // Constructors (including default constructor)
@@ -39,7 +42,7 @@ public class Videogioco extends AuditableEntity{
     // add
 
 
-    public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, List<VideogiocoEnum>generi, String piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
+    public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, List<VideogiocoEnum>generi, List<PiattaformaEnum> piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
         super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
@@ -92,12 +95,12 @@ public class Videogioco extends AuditableEntity{
 
     public void addGeneri(VideogiocoEnum videogiocoEnumAdder){generi.add(videogiocoEnumAdder);
     }
-
-    public String getPiattaforma() {
+    public void addPiattaforma (PiattaformaEnum piattaformaEnumAdder){piattaforma.add(piattaformaEnumAdder);}
+    public List<PiattaformaEnum> getPiattaforma() {
         return piattaforma;
     }
 
-    public void setPiattaforma(String piattaforma) {
+    public void setPiattaforma(List<PiattaformaEnum> piattaforma) {
         this.piattaforma = piattaforma;
     }
 
