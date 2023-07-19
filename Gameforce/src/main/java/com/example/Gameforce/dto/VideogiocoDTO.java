@@ -17,13 +17,13 @@ public class VideogiocoDTO extends AuditableDTO{
     private Double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-//    private OrdineDTO ordine;
+    private OrdineDTO ordine;
 
-    public int getCodiceVideogioco() {
+    public Integer getCodiceVideogioco() {
         return codiceVideogioco;
     }
 
-    public void setCodiceVideogioco(int codiceVideogioco) {
+    public void setCodiceVideogioco(Integer codiceVideogioco) {
         this.codiceVideogioco = codiceVideogioco;
     }
 
@@ -51,19 +51,19 @@ public class VideogiocoDTO extends AuditableDTO{
         this.piattaforma = piattaforma;
     }
 
-    public double getPrezzo() {
+    public Double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(Double prezzo) {
         this.prezzo = prezzo;
     }
 
-    public double getValutazione() {
+    public Double getValutazione() {
         return valutazione;
     }
 
-    public void setValutazione(double valutazione) {
+    public void setValutazione(Double valutazione) {
         this.valutazione = valutazione;
     }
 

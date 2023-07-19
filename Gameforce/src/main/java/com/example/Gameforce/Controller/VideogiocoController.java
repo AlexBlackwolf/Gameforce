@@ -1,6 +1,7 @@
 package com.example.Gameforce.Controller;
 
 import com.example.Gameforce.dto.VideogiocoDTO;
+import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.service.VideogiocoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/videogioco")

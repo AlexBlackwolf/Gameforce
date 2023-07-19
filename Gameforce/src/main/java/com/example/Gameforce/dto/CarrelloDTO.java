@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 public class CarrelloDTO extends AuditableDTO{
-    private int codiceCarrello;
+    private Integer codiceCarrello;
 
     private List<OrdineDTO> ordiniCarello;
 
-    public int getCodiceCarrello() {
+    public Integer getCodiceCarrello() {
         return codiceCarrello;
     }
 
-    public void setCodiceCarrello(int codiceCarrello) {
+    public void setCodiceCarrello(Integer codiceCarrello) {
         this.codiceCarrello = codiceCarrello;
     }
 

@@ -15,13 +15,13 @@ public class Videogioco extends AuditableEntity{
     //modifiy to auto-incre, int
 //    @Id
 //    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int codiceVideogioco;
+    private Integer codiceVideogioco;
     private String titolo;
 
 
     private List<PiattaformaEnum> piattaforma = new ArrayList<>();
-    private double prezzo;
-    private double valutazione;
+    private Double prezzo;
+    private Double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
     private List<VideogiocoEnum> generi = new ArrayList<>();
@@ -70,11 +70,11 @@ public class Videogioco extends AuditableEntity{
 //        this.descrizione = descrizione;
 //        this.requisitiDiSistema = requisitiDiSistema;
 //    }
-    public int getCodiceVideogioco() {
+    public Integer getCodiceVideogioco() {
         return codiceVideogioco;
     }
 
-    public void setCodiceVideogioco(int codiceVideogioco) {
+    public void setCodiceVideogioco(Integer codiceVideogioco) {
         this.codiceVideogioco = codiceVideogioco;
     }
 
@@ -104,19 +104,19 @@ public class Videogioco extends AuditableEntity{
         this.piattaforma = piattaforma;
     }
 
-    public double getPrezzo() {
+    public Double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(Double prezzo) {
         this.prezzo = prezzo;
     }
 
-    public double getValutazione() {
+    public Double getValutazione() {
         return valutazione;
     }
 
-    public void setValutazione(double valutazione) {
+    public void setValutazione(Double valutazione) {
         this.valutazione = valutazione;
     }
 

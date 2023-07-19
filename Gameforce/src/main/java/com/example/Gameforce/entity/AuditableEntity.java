@@ -19,7 +19,7 @@ public abstract class AuditableEntity {
     @JsonIgnore
     private String modifiedOn;
     @JsonIgnore
-    private boolean deleted;
+    private Boolean deleted;
 
 
     public AuditableEntity(Long id, String createdOn, String createBy, String modifyBy, String modifyOn) {

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OrdineDTO extends AuditableDTO{
 
-    private int codiceOrdine;
+    private Integer codiceOrdine;
     private Timestamp dataOrdine;
     private UtenteDTO utente;
     private CarrelloDTO carrello;
@@ -26,11 +26,11 @@ public class OrdineDTO extends AuditableDTO{
         super();
     }
 
-    public int getCodiceOrdine() {
+    public Integer getCodiceOrdine() {
         return codiceOrdine;
     }
 
-    public void setCodiceOrdine(int codiceOrdine) {
+    public void setCodiceOrdine(Integer codiceOrdine) {
         this.codiceOrdine = codiceOrdine;
     }
 

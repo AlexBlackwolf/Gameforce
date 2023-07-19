@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "ordine")
 public class Ordine extends AuditableEntity {
 
-    private int codiceOrdine;
+    private Integer codiceOrdine;
     private Timestamp dataOrdine;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,7 +30,7 @@ public class Ordine extends AuditableEntity {
         super();
     }
 
-    public Ordine(int codiceOrdine, Timestamp dataOrdine, Utente utente, Carrello carrello, List<Videogioco> videogiochi) {
+    public Ordine(Integer codiceOrdine, Timestamp dataOrdine, Utente utente, Carrello carrello, List<Videogioco> videogiochi) {
         super ();
         this.codiceOrdine = codiceOrdine;
         this.dataOrdine = dataOrdine;
@@ -43,11 +43,11 @@ public class Ordine extends AuditableEntity {
     // deletedBy and deletedOn are not present in the constructor as they are null by default, when the entity is created, and will be modified once it has been deleted.
 
 
-    public int getCodiceOrdine() {
+    public Integer getCodiceOrdine() {
         return codiceOrdine;
     }
 
-    public void setCodiceOrdine(int codiceOrdine) {
+    public void setCodiceOrdine(Integer codiceOrdine) {
         this.codiceOrdine = codiceOrdine;
     }
 
