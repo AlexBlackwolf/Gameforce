@@ -1,6 +1,8 @@
 package com.example.Gameforce.service;
 
 import com.example.Gameforce.dto.VideogiocoDTO;
+import com.example.Gameforce.entity.Carrello;
+import com.example.Gameforce.entity.Ordine;
 import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.repository.VideogiocoRepo;
@@ -15,11 +17,20 @@ import java.util.Optional;
 @Service
 public class VideogiocoService {
 
-    private VideogiocoRepo videogiocoRepo;
-
     @Autowired
-    public VideogiocoService(VideogiocoRepo videogiocoRepo) {
-        this.videogiocoRepo = videogiocoRepo;
+    private VideogiocoRepo videogiocoRepo;
+    @Autowired
+    private OrdineService ordineService;
+
+
+    private void addVideogiocoIntoOrdine(Long idVideogioco,Long idOrdine){
+       Optional<Videogioco> videogioco=  this.getVideogiochiById(idVideogioco);
+       Optional<Ordine> ordine = ordineService.getOrdineById(idOrdine);
+       if(videogioco.isPresent()){
+           Videogioco v = videogioco.get();
+           ordine.ifPresent(ordine1 -> ordine1.addVideogioco(v));
+       }
+
     }
 
     public void addVideogiocoDto(VideogiocoDTO videogioco) {

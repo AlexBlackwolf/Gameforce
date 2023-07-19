@@ -4,6 +4,7 @@ import com.example.Gameforce.dto.CarrelloDTO;
 import com.example.Gameforce.dto.OrdineDTO;
 import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.entity.Ordine;
+import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.repository.CarrelloRepo;
 import com.example.Gameforce.repository.OrdineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,16 @@ public class CarrelloService {
     @Autowired
     public OrdineRepo ordineRepo;
 
+
+    public void svuotaCarrello(Long id){
+        Optional<Carrello> carrelloOptional= this.getCarrelloById(id);
+        carrelloOptional.ifPresent(Carrello::svuotaCarrello);
+    }
+
+    public void acquistaCarrello(Long id){
+        Optional<Carrello> carrelloOptional = this.getCarrelloById(id);
+        carrelloOptional.ifPresent(Carrello::acquistaCarrello);
+    }
     public void addCarrello(CarrelloDTO carrello){
         Carrello c = new Carrello();
         c.setId(carrello.getId());

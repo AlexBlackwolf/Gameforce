@@ -33,8 +33,23 @@ public class OrdineService {
     @Autowired
     private VideogiocoRepo videogiocoRepo;
 
+
     public Optional<Ordine> getOrdineById(Long id) {
         return ordineRepo.findById(id);
+    }
+
+    public void addVideogiocoIntoOrdine(Videogioco videogioco,Long id){
+      if(this.getOrdineById(id).isPresent()) {
+          this.getOrdineById(id).get().addVideogioco(videogioco);
+      }
+    }
+
+    public void ordineIntoCarrello(Ordine ordine, Long id){
+        Optional<Carrello> carrello = carrelloRepo.findById(id);
+        if(carrello.isPresent()){
+           Carrello c= carrello.get();
+           c.addOrdineIntoCarrello(ordine);
+        }
     }
 
     public OrdineDTO getOrdineDtoById(Long id){

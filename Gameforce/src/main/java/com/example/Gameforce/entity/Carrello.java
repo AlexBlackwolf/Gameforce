@@ -35,5 +35,24 @@ public class Carrello extends AuditableEntity{
     public void setOrdiniCarello(List<Ordine> ordiniCarello) {
         this.ordiniCarello = ordiniCarello;
     }
+    public List<Ordine> addOrdineIntoCarrello(Ordine ordine){
+     ordiniCarello.add(ordine);
+     return ordiniCarello;
+    }
+    public void svuotaCarrello(){
+        ordiniCarello.forEach(ordine -> ordiniCarello.remove(ordine));
+    }
+    public Double acquistaCarrello(){
+        Double costoCarrello= 0d;
+        for (int i = 0; i < ordiniCarello.size() ; i++) {
+            List<Videogioco> videogioco= ordiniCarello.get(i).getVideogiochi();
+            costoCarrello=videogioco.get(i).getPrezzo()+costoCarrello;
+        }
+        this.svuotaCarrello();
+        return costoCarrello;
+
+
+    }
+
 }
 
