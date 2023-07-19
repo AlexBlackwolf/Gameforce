@@ -82,4 +82,9 @@ public class Ordine extends AuditableEntity {
     public void setVideogiochi(List<Videogioco> videogiochi) {
         this.videogiochi = videogiochi;
     }
+
+    public List<Videogioco> addVideogioco(Videogioco videogioco){
+        videogiochi.add(videogioco);
+        return videogiochi;
+    }
 }
