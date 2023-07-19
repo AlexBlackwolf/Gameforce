@@ -18,7 +18,7 @@ public class CarrelloDTO extends AuditableDTO{
         this.codiceCarrello = codiceCarrello;
     }
 
-    public List<OrdineDTO> getOrdiniCarello() {
+    public List<OrdineDTO> getOrdiniCarrello() {
         return ordiniCarello;
     }
 

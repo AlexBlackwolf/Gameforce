@@ -12,7 +12,7 @@ public class Carrello extends AuditableEntity{
 
     @OneToMany(mappedBy = "carrello")
     @JsonManagedReference(value = "ordini-carrello")
-    private List<Ordine> ordiniCarello;
+    private List<Ordine> ordiniCarrello;
 
     public Carrello(Long id, int codiceCarrello, String createdOn, String createdBy, String modifiedBy, String modifiedOn) {
         super(id, createdOn, createdBy, modifiedBy, modifiedOn);
@@ -29,11 +29,11 @@ public class Carrello extends AuditableEntity{
     public void setCodiceCarrello(int codiceCarrello) {
         this.codiceCarrello = codiceCarrello;
     }
-    public List<Ordine> getOrdiniCarello() {
-        return ordiniCarello;
+    public List<Ordine> getOrdiniCarrello() {
+        return ordiniCarrello;
     }
-    public void setOrdiniCarello(List<Ordine> ordiniCarello) {
-        this.ordiniCarello = ordiniCarello;
+    public void setOrdiniCarrello(List<Ordine> ordiniCarrello) {
+        this.ordiniCarrello = ordiniCarrello;
     }
 }
 
