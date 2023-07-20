@@ -32,15 +32,11 @@ public class OrdineService {
         this.videogiocoRepo=videogiocoRepo;
     }
 
-    public Optional<Ordine> getOrdineById(Long id) {
-        return ordineRepo.findById(id);
-    }
-
-    public void addVideogiocoIntoOrdine(Videogioco videogioco,Long id){
+    /* public void addVideogiocoIntoOrdine(Videogioco videogioco,Long id){
       if(this.getOrdineById(id).isPresent()) {
           this.getOrdineById(id).get().addVideogioco(videogioco);
       }
-    }
+    }*/
 
     public void ordineIntoCarrello(Ordine ordine, Long id){
         Optional<Carrello> carrello = carrelloRepo.findById(id);
@@ -50,7 +46,7 @@ public class OrdineService {
         }
     }
 
-    public OrdineDTO getOrdineDtoById(Long id){
+    public OrdineDTO getOrdineById(Long id){
         Optional<Ordine> ordine = ordineRepo.findById(id);
 
         if(ordine.isPresent()){
@@ -59,7 +55,6 @@ public class OrdineService {
             oDto.setId(o.getId());
             oDto.setCodiceOrdine(o.getCodiceOrdine());
             oDto.setDataOrdine(o.getDataOrdine());
-//            aggiungere utente e carrello conversione da entity a dto (da capire perchè utente risulta null
 
             List<Videogioco> videogiochi = videogiocoRepo.findAll();
 
@@ -70,14 +65,10 @@ public class OrdineService {
                     match.setId(v.getId());
                     match.setCodiceVideogioco(v.getCodiceVideogioco());
                     match.setTitolo(v.getTitolo());
-                    //match.setGeneri(v.getGeneri());
-                    //match.setPiattaforma(v.getPiattaforma());
                     match.setPrezzo(v.getPrezzo());
                     match.setDescrizione(v.getDescrizione());
                     match.setRequisitiDiSistema(v.getRequisitiDiSistema());
-                    //chiamata non funzionava perchè valutazione risultava null
                     match.setValutazione(v.getValutazione());
-
                     videogiocoMatches.add(match);
                 }
             }
@@ -87,49 +78,16 @@ public class OrdineService {
         return null;
     }
 
-    public void addOrdineDto(OrdineDTO ordineDto) {
+    public void addOrdine(OrdineDTO ordineDto) {
         Ordine ordine = new Ordine();
         ordine.setDataOrdine(ordineDto.getDataOrdine());
         ordine.setCodiceOrdine(ordineDto.getCodiceOrdine());
         ordine.setDeleted(false);
-
-//        Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
-//        if (optionalUtente.isPresent()) {
-//            Utente utente = optionalUtente.get();
-//            ordine.setUtente(utente);
-//        } else {
-//            throw new RuntimeException("Utente not found");
-//        }
-
-//        Optional<Carrello> optionalCarrello = carrelloRepo.findById(ordineDto.getCarrello().getId());
-//        if (optionalCarrello.isPresent()) {
-//            Carrello carrello = optionalCarrello.get();
-//            ordine.setCarrello(carrello);
-//        } else {
-//            throw new RuntimeException("Carrello not found");
-//        }
-//
-//        VideogiocoService videogiocoService = new VideogiocoService();
-//
-//        VideogiocoDTO vDto = new VideogiocoDTO();
-//        ordine.setVideogiochi(videogiocoService.addVideogiocoIntoOrdine(vDto.getId(), ordineDto.getId()));
-//        List<Videogioco> videogiochi = new ArrayList<>();
-//        for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
-//            Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
-//            if (optionalVideogioco.isPresent()) {
-//                Videogioco videogioco = optionalVideogioco.get();
-//                videogiochi.add(videogioco);
-//            } else {
-//                throw new RuntimeException("Videogioco not found");
-//            }
-//        }
-//        ordine.setVideogiochi(videogiochi);
-
         ordineRepo.save(ordine);
     }
 
     // da migliorare
-    public void updateOrdineDto(Long id, OrdineDTO ordineDto) {
+    public void updateOrdine(Long id, OrdineDTO ordineDto) {
         Optional<Ordine> optionalOrdine = ordineRepo.findById(id);
         if (optionalOrdine.isPresent()) {
             Ordine ordine = optionalOrdine.get();
@@ -170,47 +128,26 @@ public class OrdineService {
             throw new RuntimeException("Ordine not found");
         }
     }
+    public List<OrdineDTO> getOrdini(){
 
-    public void updateOrdine(Long id, Ordine ordine) {
-        ordineRepo.deleteById(id);
-        ordineRepo.save(ordine);
-    }
-
-    public List<Ordine> getOrdini() {
-        return ordineRepo.findAll();
-    }
-
-    public List<OrdineDTO> getOrdiniDto(){
         List<Ordine> ordini = ordineRepo.findAll();
-
         List<OrdineDTO> ordiniDto = new ArrayList<>();
 
         OrdineDTO oDto = new OrdineDTO();
-
         for (Ordine o : ordini){
             if (!ordini.isEmpty()){
                 oDto.setId(o.getId());
                 oDto.setCodiceOrdine(o.getCodiceOrdine());
                 oDto.setDataOrdine(o.getDataOrdine());
-
                 ordiniDto.add(oDto);
                 return ordiniDto;
             }
         }
-
         return null;
     }
-
-    //questo metodo si potrebbe fare passando ordineDto e fare sempre il deleteById
-    public void deleteOrdine(Ordine ordine) {
-        ordineRepo.delete(ordine);
-    }
-
     public void deleteOrdineById(Long id) {
         ordineRepo.deleteById(id);
     }
-
-
     public void logicalDelete(Long id) {
         Optional<Ordine> optionalEntity = ordineRepo.findById(id);
         optionalEntity.ifPresent(entity -> {
@@ -218,5 +155,4 @@ public class OrdineService {
             ordineRepo.save(entity);
         });
     }
-
 }

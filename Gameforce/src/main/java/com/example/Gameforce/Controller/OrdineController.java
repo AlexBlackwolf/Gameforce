@@ -1,8 +1,6 @@
 package com.example.Gameforce.Controller;
 
 import com.example.Gameforce.dto.OrdineDTO;
-import com.example.Gameforce.dto.VideogiocoDTO;
-import com.example.Gameforce.entity.Ordine;
 import com.example.Gameforce.service.OrdineService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,7 +27,7 @@ public class OrdineController {
     @Operation(description = "Chiamata per aggiungere un ordine")
     @ApiResponse
     public ResponseEntity<?> addOrdine(@RequestBody OrdineDTO ordineDTO) {
-        ordineService.addOrdineDto(ordineDTO);
+        ordineService.addOrdine(ordineDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -37,7 +35,7 @@ public class OrdineController {
     @Operation(description = "Chiamata per aggiungere un ordine")
     @ApiResponse
     public ResponseEntity<?> getOrdine(@PathVariable Long id) {
-        OrdineDTO ordineDTO = ordineService.getOrdineDtoById(id);
+        OrdineDTO ordineDTO = ordineService.getOrdineById(id);
         if (ordineDTO != null) {
             return ResponseEntity.ok(ordineDTO);
         } else {
@@ -49,7 +47,7 @@ public class OrdineController {
     @Operation(description = "chiamate per visualizzare tutti gli ordini")
     @ApiResponse
     public ResponseEntity<?>getAllOrdini(){
-        List<OrdineDTO> list = ordineService.getOrdiniDto();
+        List<OrdineDTO> list = ordineService.getOrdini();
         return ResponseEntity.ok(list);
     }
 
@@ -67,7 +65,7 @@ public class OrdineController {
     public ResponseEntity<?> updateOrdine(@PathVariable Long id, @RequestBody OrdineDTO ordineDTO) {
         ordineDTO.setId(id);
         try {
-            ordineService.updateOrdineDto(id, ordineDTO);
+            ordineService.updateOrdine(id, ordineDTO);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

@@ -1,11 +1,6 @@
 package com.example.Gameforce.dto;
 
-import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.entity.Ordine;
-import com.example.Gameforce.entity.Utente;
-import com.example.Gameforce.entity.Videogioco;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.sql.Timestamp;
 import java.util.List;

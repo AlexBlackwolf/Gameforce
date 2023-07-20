@@ -1,7 +1,6 @@
 package com.example.Gameforce.Controller;
 
 import com.example.Gameforce.dto.CarrelloDTO;
-import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.service.CarrelloService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/carrello")
@@ -45,9 +43,13 @@ public class CarrelloController {
     @Operation(description = "Chiamata per visualizzare un carrello tramite id")
     @ApiResponse
     public ResponseEntity<?> getCarrelloById(@PathVariable Long id) {
-        Optional<Carrello> carrello = carrelloService.getCarrelloById(id);
-        return carrello.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        CarrelloDTO carrelloDTO = carrelloService.getCarrelloById(id);
+        if (carrelloDTO != null) {
+            return ResponseEntity.ok(carrelloDTO);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/delete-carrello/{id}")
@@ -58,21 +60,12 @@ public class CarrelloController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update-carrello/{id}")
+    @PutMapping("/update-carrello{id}")
     @Operation(description = "Chiamata per modificare un carrello")
     @ApiResponse
     public ResponseEntity<?> updateCarrello(@PathVariable Long id, @RequestBody CarrelloDTO carrello) {
         carrello.setId(id);
-        carrelloService.updateCarrelloDto(carrello);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("/update-carrello{id}")
-    @Operation(description = "Chiamata per modificare un carrello")
-    @ApiResponse
-    public ResponseEntity<?> updateCarrelloDto(@PathVariable Long id, @RequestBody CarrelloDTO carrello) {
-        carrello.setId(id);
-        carrelloService.updateCarrelloDto(carrello);
+        carrelloService.updateCarrello(carrello);
         return ResponseEntity.noContent().build();
     }
 

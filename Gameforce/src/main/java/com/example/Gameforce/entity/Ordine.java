@@ -39,10 +39,6 @@ public class Ordine extends AuditableEntity {
         this.videogiochi = videogiochi;
     }
 
-
-    // deletedBy and deletedOn are not present in the constructor as they are null by default, when the entity is created, and will be modified once it has been deleted.
-
-
     public Integer getCodiceOrdine() {
         return codiceOrdine;
     }

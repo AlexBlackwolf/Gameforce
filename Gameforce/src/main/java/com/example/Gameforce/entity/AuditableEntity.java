@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 
 
 @MappedSuperclass
-//class needs to be abstract to avoid to be inizialized as a table
 public abstract class AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +28,6 @@ public abstract class AuditableEntity {
         this.modifiedBy = modifyBy;
         this.modifiedOn = modifyOn;
 
-        //soon to be deletedby and deletedOn
     }
 
     public AuditableEntity() {

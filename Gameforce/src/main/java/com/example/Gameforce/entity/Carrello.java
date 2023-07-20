@@ -29,16 +29,20 @@ public class Carrello extends AuditableEntity{
     public void setCodiceCarrello(Integer codiceCarrello) {
         this.codiceCarrello = codiceCarrello;
     }
+
     public List<Ordine> getOrdiniCarello() {
         return ordiniCarello;
     }
+
     public void setOrdiniCarello(List<Ordine> ordiniCarello) {
         this.ordiniCarello = ordiniCarello;
     }
+
     public List<Ordine> addOrdineIntoCarrello(Ordine ordine){
      ordiniCarello.add(ordine);
      return ordiniCarello;
     }
+
     public void svuotaCarrello(){
         ordiniCarello.forEach(ordine -> ordiniCarello.remove(ordine));
     }
@@ -50,9 +54,6 @@ public class Carrello extends AuditableEntity{
         }
         this.svuotaCarrello();
         return costoCarrello;
-
-
     }
-
 }
 

@@ -1,21 +1,11 @@
 package com.example.Gameforce.dto;
 
-import com.example.Gameforce.entity.Carrello;
-import com.example.Gameforce.entity.Ordine;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
-
 public class UtenteDTO extends AuditableDTO{
 
     private Long codiceUtente;
     private String nome;
     private String cognome;
     private String email;
-//    da togliere perchè non serve visualizzarli
-//    private List<OrdineDTO> ordiniUtente;
-//    da valutare se far visualizzare il carrello denrto l'utente
-//    private CarrelloDTO carrello;
 
     public Long getCodiceUtente() {
         return codiceUtente;
@@ -49,20 +39,4 @@ public class UtenteDTO extends AuditableDTO{
         this.email = email;
     }
 
-
-//    public List<OrdineDTO> getOrdiniUtente() {
-//        return ordiniUtente;
-//    }
-//
-//    public void setOrdiniUtente(List<OrdineDTO> ordiniUtente) {
-//        this.ordiniUtente = ordiniUtente;
-//    }
-
-//    public CarrelloDTO getCarrello() {
-//        return carrello;
-//    }
-//
-//    public void setCarrello(CarrelloDTO carrello) {
-//        this.carrello = carrello;
-//    }
 }
