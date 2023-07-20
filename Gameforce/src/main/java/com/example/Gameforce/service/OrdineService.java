@@ -59,7 +59,7 @@ public class OrdineService {
             oDto.setId(o.getId());
             oDto.setCodiceOrdine(o.getCodiceOrdine());
             oDto.setDataOrdine(o.getDataOrdine());
-            //aggiungere utente e carrello conversione da entity a dto (da capire perchè utente risulta null
+//            aggiungere utente e carrello conversione da entity a dto (da capire perchè utente risulta null
 
             List<Videogioco> videogiochi = videogiocoRepo.findAll();
 
@@ -91,27 +91,28 @@ public class OrdineService {
         Ordine ordine = new Ordine();
         ordine.setDataOrdine(ordineDto.getDataOrdine());
         ordine.setCodiceOrdine(ordineDto.getCodiceOrdine());
+        ordine.setDeleted(false);
 
-        Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
-        if (optionalUtente.isPresent()) {
-            Utente utente = optionalUtente.get();
-            ordine.setUtente(utente);
-        } else {
-            throw new RuntimeException("Utente not found");
-        }
+//        Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
+//        if (optionalUtente.isPresent()) {
+//            Utente utente = optionalUtente.get();
+//            ordine.setUtente(utente);
+//        } else {
+//            throw new RuntimeException("Utente not found");
+//        }
 
-        Optional<Carrello> optionalCarrello = carrelloRepo.findById(ordineDto.getCarrello().getId());
-        if (optionalCarrello.isPresent()) {
-            Carrello carrello = optionalCarrello.get();
-            ordine.setCarrello(carrello);
-        } else {
-            throw new RuntimeException("Carrello not found");
-        }
-
-        VideogiocoService videogiocoService = new VideogiocoService();
-
-        VideogiocoDTO vDto = new VideogiocoDTO();
-        ordine.setVideogiochi(videogiocoService.addVideogiocoIntoOrdine(vDto.getId(), ordineDto.getId()));
+//        Optional<Carrello> optionalCarrello = carrelloRepo.findById(ordineDto.getCarrello().getId());
+//        if (optionalCarrello.isPresent()) {
+//            Carrello carrello = optionalCarrello.get();
+//            ordine.setCarrello(carrello);
+//        } else {
+//            throw new RuntimeException("Carrello not found");
+//        }
+//
+//        VideogiocoService videogiocoService = new VideogiocoService();
+//
+//        VideogiocoDTO vDto = new VideogiocoDTO();
+//        ordine.setVideogiochi(videogiocoService.addVideogiocoIntoOrdine(vDto.getId(), ordineDto.getId()));
 //        List<Videogioco> videogiochi = new ArrayList<>();
 //        for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
 //            Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
@@ -127,12 +128,14 @@ public class OrdineService {
         ordineRepo.save(ordine);
     }
 
+    // da migliorare
     public void updateOrdineDto(Long id, OrdineDTO ordineDto) {
         Optional<Ordine> optionalOrdine = ordineRepo.findById(id);
         if (optionalOrdine.isPresent()) {
             Ordine ordine = optionalOrdine.get();
             ordine.setDataOrdine(ordineDto.getDataOrdine());
             ordine.setCodiceOrdine(ordineDto.getCodiceOrdine());
+            ordine.setDeleted(false);
 
             Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
             if (optionalUtente.isPresent()) {

@@ -76,10 +76,9 @@ public class VideogiocoService {
 
         List<VideogiocoDTO> videogiochiDto = new ArrayList<>();
 
-        VideogiocoDTO vDto = new VideogiocoDTO();
-
-        for (Videogioco v : videogiochi){
-            if (!videogiochi.isEmpty()){
+        if (!videogiochi.isEmpty()){
+            for (Videogioco v : videogiochi){
+                VideogiocoDTO vDto = new VideogiocoDTO();
                 vDto.setId(v.getId());
                 vDto.setCodiceVideogioco(v.getCodiceVideogioco());
                 vDto.setTitolo(v.getTitolo());
@@ -91,9 +90,10 @@ public class VideogiocoService {
                 vDto.setRequisitiDiSistema(v.getRequisitiDiSistema());
 
                 videogiochiDto.add(vDto);
-                return videogiochiDto;
             }
+            return videogiochiDto;
         }
+
 
         return null;
     }
@@ -111,6 +111,7 @@ public class VideogiocoService {
             throw new RuntimeException("Videogico non trovato");
         }
         Videogioco v = new Videogioco();
+        v.setId(videogioco.getId());
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
         //videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());

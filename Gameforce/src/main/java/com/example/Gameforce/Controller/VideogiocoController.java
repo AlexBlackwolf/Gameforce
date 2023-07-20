@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,11 +32,19 @@ public class VideogiocoController {
         videogiocoService.addVideogiocoDto(videogiocoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+//    @GetMapping("/get-all-videogioco")
+//    @Operation(description = "chiamate per visualizzare tutti i videogiochi")
+//    @ApiResponse
+//    public ResponseEntity<?>getAllVideogioco(){
+//        return ResponseEntity.ok(videogiocoService.getAllVideogioco());
+//    }
+
     @GetMapping("/get-all-videogioco")
     @Operation(description = "chiamate per visualizzare tutti i videogiochi")
     @ApiResponse
     public ResponseEntity<?>getAllVideogioco(){
-        return ResponseEntity.ok(videogiocoService.getAllVideogioco());
+        List<VideogiocoDTO> list = videogiocoService.getAllVideogioco();
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/get-videogioco/{id}")
@@ -65,7 +74,7 @@ public class VideogiocoController {
         videogiocoDTO.setId(id);
         try {
             videogiocoService.updateVideogiocoDto(videogiocoDTO);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
