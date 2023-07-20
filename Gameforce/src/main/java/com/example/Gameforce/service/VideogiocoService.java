@@ -23,14 +23,15 @@ public class VideogiocoService {
     private OrdineService ordineService;
 
 
-    private void addVideogiocoIntoOrdine(Long idVideogioco,Long idOrdine){
+    public List<Videogioco> addVideogiocoIntoOrdine(Long idVideogioco,Long idOrdine){
        Optional<Videogioco> videogioco=  this.getVideogiochiById(idVideogioco);
        Optional<Ordine> ordine = ordineService.getOrdineById(idOrdine);
        if(videogioco.isPresent()){
            Videogioco v = videogioco.get();
            ordine.ifPresent(ordine1 -> ordine1.addVideogioco(v));
+           return ordine.get().getVideogiochi();
        }
-
+        return null;
     }
 
     public void addVideogiocoDto(VideogiocoDTO videogioco) {

@@ -18,11 +18,8 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class OrdineService {
-    private OrdineRepo ordineRepo;
     @Autowired
-    public OrdineService(OrdineRepo ordineRepo) {
-        this.ordineRepo = ordineRepo;
-    }
+    private OrdineRepo ordineRepo;
 
     @Autowired
     private UtenteRepo utenteRepo;
@@ -111,17 +108,21 @@ public class OrdineService {
             throw new RuntimeException("Carrello not found");
         }
 
-        List<Videogioco> videogiochi = new ArrayList<>();
-        for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
-            Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
-            if (optionalVideogioco.isPresent()) {
-                Videogioco videogioco = optionalVideogioco.get();
-                videogiochi.add(videogioco);
-            } else {
-                throw new RuntimeException("Videogioco not found");
-            }
-        }
-        ordine.setVideogiochi(videogiochi);
+        VideogiocoService videogiocoService = new VideogiocoService();
+
+        VideogiocoDTO vDto = new VideogiocoDTO();
+        ordine.setVideogiochi(videogiocoService.addVideogiocoIntoOrdine(vDto.getId(), ordineDto.getId()));
+//        List<Videogioco> videogiochi = new ArrayList<>();
+//        for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
+//            Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
+//            if (optionalVideogioco.isPresent()) {
+//                Videogioco videogioco = optionalVideogioco.get();
+//                videogiochi.add(videogioco);
+//            } else {
+//                throw new RuntimeException("Videogioco not found");
+//            }
+//        }
+//        ordine.setVideogiochi(videogiochi);
 
         ordineRepo.save(ordine);
     }
