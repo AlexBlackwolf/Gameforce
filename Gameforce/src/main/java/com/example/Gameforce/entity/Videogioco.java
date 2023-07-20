@@ -10,44 +10,26 @@ import java.util.List;
 @Entity
 @Table(name = "videogioco")
 public class Videogioco extends AuditableEntity{
-    //cancellato annotation ID dato che l'id sarà preso dalla classe padre
-
-    //modifiy to auto-incre, int
-//    @Id
-//    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int codiceVideogioco;
     private String titolo;
-
-
-    private List<PiattaformaEnum> piattaforma = new ArrayList<>();
+    //private List<PiattaformaEnum> piattaforma = new ArrayList<>();
     private double prezzo;
     private double valutazione;
     private String descrizione;
     private String requisitiDiSistema;
-    private List<VideogiocoEnum> generi = new ArrayList<>();
+    //private List<VideogiocoEnum> generi = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordine_id")
     @JsonBackReference(value = "ordini-videogioco")
     private Ordine ordine;
 
-    // Constructors (including default constructor)
-
-    // Getters and Setters
-
-    // Other methods (if any)
-
-    // fill constructor
-
-    // add
-
-
     public Videogioco(Long id, String createdOn, String createBy, String modifyBy, String modifyOn, int codiceVideogioco, String titolo, List<VideogiocoEnum>generi, List<PiattaformaEnum> piattaforma, double prezzo, double valutazione, String descrizione, String requisitiDiSistema, Ordine ordine) {
         super(id, createdOn, createBy, modifyBy, modifyOn);
         this.codiceVideogioco = codiceVideogioco;
         this.titolo = titolo;
-        this.generi = generi;
-        this.piattaforma = piattaforma;
+        //this.generi = generi;
+        //this.piattaforma = piattaforma;
         this.prezzo = prezzo;
         this.valutazione = valutazione;
         this.descrizione = descrizione;
@@ -86,7 +68,7 @@ public class Videogioco extends AuditableEntity{
         this.titolo = titolo;
     }
 
-    public List<VideogiocoEnum> getGeneri() {
+    /*public List<VideogiocoEnum> getGeneri() {
         return generi;
     }
 
@@ -102,7 +84,7 @@ public class Videogioco extends AuditableEntity{
 
     public void setPiattaforma(List<PiattaformaEnum> piattaforma) {
         this.piattaforma = piattaforma;
-    }
+    }*/
 
     public double getPrezzo() {
         return prezzo;

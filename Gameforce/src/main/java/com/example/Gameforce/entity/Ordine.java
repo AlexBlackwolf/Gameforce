@@ -22,7 +22,7 @@ public class Ordine extends AuditableEntity {
     @JsonBackReference(value = "ordini-carrello")
     private Carrello carrello;
 
-    @OneToMany(mappedBy = "ordine")
+    @OneToMany(mappedBy = "ordine",fetch = FetchType.LAZY)
     @JsonManagedReference(value = "ordini-videogioco")
     private List<Videogioco> videogiochi;
 

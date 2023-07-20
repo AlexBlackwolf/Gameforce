@@ -11,8 +11,8 @@ import java.util.List;
 public class VideogiocoDTO extends AuditableDTO{
     private Integer codiceVideogioco;
     private String titolo;
-    private List<VideogiocoEnum> generi = new ArrayList<>();
-    private List<PiattaformaEnum> piattaforma = new ArrayList<>();
+    //private List<VideogiocoEnum> generi = new ArrayList<>();
+    //private List<PiattaformaEnum> piattaforma = new ArrayList<>();
     private Double prezzo;
     private Double valutazione;
     private String descrizione;
@@ -35,7 +35,7 @@ public class VideogiocoDTO extends AuditableDTO{
         this.titolo = titolo;
     }
 
-    public List<VideogiocoEnum> getGeneri() {
+    /*public List<VideogiocoEnum> getGeneri() {
         return generi;
     }
 
@@ -49,7 +49,7 @@ public class VideogiocoDTO extends AuditableDTO{
 
     public void setPiattaforma(List<PiattaformaEnum> piattaforma) {
         this.piattaforma = piattaforma;
-    }
+    }*/
 
     public double getPrezzo() {
         return prezzo;
