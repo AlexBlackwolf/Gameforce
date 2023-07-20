@@ -17,14 +17,13 @@ import java.util.Optional;
 @Service
 public class CarrelloService {
     private CarrelloRepo carrelloRepo;
-    @Autowired
-    public CarrelloService(CarrelloRepo carrelloRepo) {
-        this.carrelloRepo = carrelloRepo;
-    }
-    @Autowired
     public OrdineRepo ordineRepo;
+    @Autowired
 
-
+    public CarrelloService(CarrelloRepo carrelloRepo, OrdineRepo ordineRepo) {
+        this.carrelloRepo = carrelloRepo;
+        this.ordineRepo = ordineRepo;
+    }
     public void svuotaCarrello(Long id){
         Optional<Carrello> carrelloOptional= this.getCarrelloById(id);
         carrelloOptional.ifPresent(Carrello::svuotaCarrello);

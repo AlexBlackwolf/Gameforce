@@ -8,5 +8,4 @@ public enum PiattaformaEnum {
     NINTENDO_3DS,
     NINTENDO_SWITCH,
     PC;
-
 }

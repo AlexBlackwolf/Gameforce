@@ -31,6 +31,12 @@ public class VideogiocoController {
         videogiocoService.addVideogiocoDto(videogiocoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @GetMapping("/get-all-videogioco")
+    @Operation(description = "chiamate per visualizzare tutti i videogiochi")
+    @ApiResponse
+    public ResponseEntity<?>getAllVideogioco(){
+        return ResponseEntity.ok(videogiocoService.getAllVideogioco());
+    }
 
     @GetMapping("/get-videogioco/{id}")
     @Operation(description = "Chiamata per visualizzare un videogioco")

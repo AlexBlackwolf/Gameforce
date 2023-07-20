@@ -18,18 +18,19 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class OrdineService {
-    @Autowired
+
     private OrdineRepo ordineRepo;
-
-    @Autowired
     private UtenteRepo utenteRepo;
-
-    @Autowired
     private CarrelloRepo carrelloRepo;
-
-    @Autowired
     private VideogiocoRepo videogiocoRepo;
 
+    @Autowired
+    public OrdineService(OrdineRepo ordineRepo, UtenteRepo utenteRepo, CarrelloRepo carrelloRepo, VideogiocoRepo videogiocoRepo) {
+        this.ordineRepo = ordineRepo;
+        this.utenteRepo= utenteRepo;
+        this.carrelloRepo=carrelloRepo;
+        this.videogiocoRepo=videogiocoRepo;
+    }
 
     public Optional<Ordine> getOrdineById(Long id) {
         return ordineRepo.findById(id);
@@ -58,6 +59,7 @@ public class OrdineService {
             oDto.setId(o.getId());
             oDto.setCodiceOrdine(o.getCodiceOrdine());
             oDto.setDataOrdine(o.getDataOrdine());
+            //aggiungere utente e carrello conversione da entity a dto (da capire perchè utente risulta null
 
             List<Videogioco> videogiochi = videogiocoRepo.findAll();
 
@@ -68,22 +70,20 @@ public class OrdineService {
                     match.setId(v.getId());
                     match.setCodiceVideogioco(v.getCodiceVideogioco());
                     match.setTitolo(v.getTitolo());
-                    match.setGeneri(v.getGeneri());
-                    match.setPiattaforma(v.getPiattaforma());
+                    //match.setGeneri(v.getGeneri());
+                    //match.setPiattaforma(v.getPiattaforma());
                     match.setPrezzo(v.getPrezzo());
                     match.setDescrizione(v.getDescrizione());
                     match.setRequisitiDiSistema(v.getRequisitiDiSistema());
+                    //chiamata non funzionava perchè valutazione risultava null
+                    match.setValutazione(v.getValutazione());
 
                     videogiocoMatches.add(match);
-
                 }
             }
-
             oDto.setVideogiochi(videogiocoMatches);
             return oDto;
         }
-
-
         return null;
     }
 

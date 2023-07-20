@@ -37,10 +37,10 @@ public class VideogiocoService {
     public void addVideogiocoDto(VideogiocoDTO videogioco) {
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        videogioco.getGeneri().forEach(g->v.addGeneri(g));
+        //videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
-        videogioco.getPiattaforma().forEach(p->v.addPiattaforma(p));
-        v.setPiattaforma(videogioco.getPiattaforma());
+        //videogioco.getPiattaforma().forEach(p->v.addPiattaforma(p));
+        //v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
         v.setValutazione(videogioco.getValutazione());
         v.setDescrizione(videogioco.getDescrizione());
@@ -59,9 +59,9 @@ public class VideogiocoService {
             Videogioco v = videogioco.get();
             vDto.setId(v.getId());
             vDto.setCodiceVideogioco(v.getCodiceVideogioco());
-            vDto.setGeneri(v.getGeneri());
+            //vDto.setGeneri(v.getGeneri());
             vDto.setTitolo(v.getTitolo());
-            vDto.setPiattaforma(v.getPiattaforma());
+            //vDto.setPiattaforma(v.getPiattaforma());
             vDto.setPrezzo(v.getPrezzo());
             vDto.setValutazione(v.getValutazione());
             vDto.setDescrizione(v.getDescrizione());
@@ -83,8 +83,8 @@ public class VideogiocoService {
                 vDto.setId(v.getId());
                 vDto.setCodiceVideogioco(v.getCodiceVideogioco());
                 vDto.setTitolo(v.getTitolo());
-                vDto.setGeneri(v.getGeneri());
-                vDto.setPiattaforma(v.getPiattaforma());
+                //vDto.setGeneri(v.getGeneri());
+                //vDto.setPiattaforma(v.getPiattaforma());
                 vDto.setPrezzo(v.getPrezzo());
                 vDto.setValutazione(v.getValutazione());
                 vDto.setDescrizione(v.getDescrizione());
@@ -112,9 +112,9 @@ public class VideogiocoService {
         }
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        videogioco.getGeneri().forEach(g->v.addGeneri(g));
+        //videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
-        v.setPiattaforma(videogioco.getPiattaforma());
+        //v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
         v.setValutazione(videogioco.getValutazione());
         v.setDescrizione(videogioco.getDescrizione());

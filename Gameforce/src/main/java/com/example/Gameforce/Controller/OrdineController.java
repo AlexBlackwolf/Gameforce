@@ -33,9 +33,7 @@ public class OrdineController {
     @Operation(description = "Chiamata per aggiungere un ordine")
     @ApiResponse
     public ResponseEntity<?> getOrdine(@PathVariable Long id) {
-        OrdineDTO ordineDTO = ordineService.getOrdineById(id)
-                .map(ordine -> new OrdineDTO(ordine)) // Convert Ordine to OrdineDTO if present
-                .orElse(null);
+        OrdineDTO ordineDTO = ordineService.getOrdineDtoById(id);
         if (ordineDTO != null) {
             return ResponseEntity.ok(ordineDTO);
         } else {
