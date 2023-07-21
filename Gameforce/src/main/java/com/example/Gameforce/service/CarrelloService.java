@@ -37,6 +37,7 @@ public class CarrelloService {
         Carrello c = new Carrello();
         c.setId(carrello.getId());
         c.setCodiceCarrello(carrello.getCodiceCarrello());
+        c.setDeleted(false);
         carrelloRepo.save(c);
     }
     public List<CarrelloDTO> getCarrelli() {
