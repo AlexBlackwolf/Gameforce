@@ -1,7 +1,6 @@
 package com.example.Gameforce.Controller;
 
 import com.example.Gameforce.dto.VideogiocoDTO;
-import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.service.VideogiocoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/videogioco")
@@ -29,15 +27,9 @@ public class VideogiocoController {
     @Operation(description = "Chiamata per aggiungere un videogioco")
     @ApiResponse
     public ResponseEntity<?> addVideogioco(@RequestBody VideogiocoDTO videogiocoDTO) {
-        videogiocoService.addVideogiocoDto(videogiocoDTO);
+        videogiocoService.addVideogioco(videogiocoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-//    @GetMapping("/get-all-videogioco")
-//    @Operation(description = "chiamate per visualizzare tutti i videogiochi")
-//    @ApiResponse
-//    public ResponseEntity<?>getAllVideogioco(){
-//        return ResponseEntity.ok(videogiocoService.getAllVideogioco());
-//    }
 
     @GetMapping("/get-all-videogioco")
     @Operation(description = "chiamate per visualizzare tutti i videogiochi")
@@ -51,7 +43,7 @@ public class VideogiocoController {
     @Operation(description = "Chiamata per visualizzare un videogioco")
     @ApiResponse
     public ResponseEntity<?> getVideogioco(@PathVariable Long id) {
-        VideogiocoDTO videogiocoDTO = videogiocoService.getVidegiocoDtoById(id);
+        VideogiocoDTO videogiocoDTO = videogiocoService.getVidegiocoById(id);
         if (videogiocoDTO != null) {
             return ResponseEntity.ok(videogiocoDTO);
         } else {
@@ -73,7 +65,7 @@ public class VideogiocoController {
     public ResponseEntity<?> updateVideogioco(@PathVariable Long id, @RequestBody VideogiocoDTO videogiocoDTO) {
         videogiocoDTO.setId(id);
         try {
-            videogiocoService.updateVideogiocoDto(videogiocoDTO);
+            videogiocoService.updateVideogioco(videogiocoDTO);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

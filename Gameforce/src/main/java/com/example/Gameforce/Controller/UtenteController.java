@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/utente")
@@ -43,19 +42,19 @@ public class UtenteController {
     @Operation(description = "Chiamata per visualizzare un utente")
     @ApiResponse
     private ResponseEntity<?> getUtente(@PathVariable Long id){
-        return ResponseEntity.ok(utenteService.getUtenteDto(id));
+        return ResponseEntity.ok(utenteService.getUtenteById(id));
     }
     @GetMapping (value = "/get-utenti")
     @Operation(description = "Chiamata per visualizzare tutti gli utenti")
     @ApiResponse
     private ResponseEntity<?> getListUtenti(){
-        return ResponseEntity.ok(utenteService.getUtentiDto());
+        return ResponseEntity.ok(utenteService.getUtenti());
     }
     @PutMapping("/update-utente/{id}")
     @Operation(description = "Chiamata per modificare un utente")
     @ApiResponse
     private ResponseEntity<?> updateUtente(@PathVariable Long id, @RequestBody UtenteDTO utenteDTO){
-        return ResponseEntity.ok(utenteService.updateUtenteDto(utenteDTO));
+        return ResponseEntity.ok(utenteService.updateUtente(utenteDTO));
     }
     @DeleteMapping("/logical-delete-utente/{id}")
     @Operation(description = "Chiamata per effettuare una cancellazione logica")
@@ -75,7 +74,7 @@ public class UtenteController {
     @Operation(description = "Chiamata per inserire un utente")
     @ApiResponse
     private ResponseEntity<?> createUtente(@RequestBody UtenteDTO utenteDTO){
-        utenteService.addUtenteDto(utenteDTO);
+        utenteService.addUtente(utenteDTO);
         return ResponseEntity.ok("L'utente è stato creato correttamente!");
     }
 

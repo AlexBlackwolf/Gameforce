@@ -1,6 +1,5 @@
 package com.example.Gameforce.entity;//
-// rimosso jakarta per via dei problemi meglio usare javax
-import com.example.Gameforce.utils.DataEncryption;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -23,10 +22,10 @@ public class Utente extends AuditableEntity {
     @Size(min=7 , message = "la password deve contenere almeno 7 caratteri!")
     private String password;
     private Double saldo= 0d;
-    private Boolean loginStatus=false; // Considerare l'uso di un enumerato  invece di un booleano
+    private Boolean loginStatus=false;
 
     @OneToMany(mappedBy = "utente")
-    @JsonManagedReference(value = "ordini-utente")// non vanno messe se non visualizziamo questi dati nei controller
+    @JsonManagedReference(value = "ordini-utente")
     private List<Ordine> ordiniUtente;
 
     @OneToOne

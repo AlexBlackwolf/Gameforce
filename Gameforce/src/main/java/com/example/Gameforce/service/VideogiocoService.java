@@ -1,9 +1,6 @@
 package com.example.Gameforce.service;
 
 import com.example.Gameforce.dto.VideogiocoDTO;
-import com.example.Gameforce.entity.Carrello;
-import com.example.Gameforce.entity.Ordine;
-import com.example.Gameforce.entity.Utente;
 import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.repository.VideogiocoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +20,7 @@ public class VideogiocoService {
     private OrdineService ordineService;
 
 
-    public List<Videogioco> addVideogiocoIntoOrdine(Long idVideogioco,Long idOrdine){
+   /* public List<Videogioco> addVideogiocoIntoOrdine(Long idVideogioco,Long idOrdine){
        Optional<Videogioco> videogioco=  this.getVideogiochiById(idVideogioco);
        Optional<Ordine> ordine = ordineService.getOrdineById(idOrdine);
        if(videogioco.isPresent()){
@@ -32,15 +29,12 @@ public class VideogiocoService {
            return ordine.get().getVideogiochi();
        }
         return null;
-    }
+    }*/
 
-    public void addVideogiocoDto(VideogiocoDTO videogioco) {
+    public void addVideogioco(VideogiocoDTO videogioco) {
         Videogioco v = new Videogioco();
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        //videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
-        //videogioco.getPiattaforma().forEach(p->v.addPiattaforma(p));
-        //v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
         v.setValutazione(videogioco.getValutazione());
         v.setDescrizione(videogioco.getDescrizione());
@@ -48,20 +42,14 @@ public class VideogiocoService {
         videogiocoRepo.save(v);
     }
 
-    public Optional<Videogioco> getVideogiochiById(Long id) {
-        return videogiocoRepo.findById(id);
-    }
-
-    public VideogiocoDTO getVidegiocoDtoById(Long id) {
+    public VideogiocoDTO getVidegiocoById(Long id) {
         Optional<Videogioco> videogioco = videogiocoRepo.findById(id);
         if (videogioco.isPresent()) {
             VideogiocoDTO vDto = new VideogiocoDTO();
             Videogioco v = videogioco.get();
             vDto.setId(v.getId());
             vDto.setCodiceVideogioco(v.getCodiceVideogioco());
-            //vDto.setGeneri(v.getGeneri());
             vDto.setTitolo(v.getTitolo());
-            //vDto.setPiattaforma(v.getPiattaforma());
             vDto.setPrezzo(v.getPrezzo());
             vDto.setValutazione(v.getValutazione());
             vDto.setDescrizione(v.getDescrizione());
@@ -73,7 +61,6 @@ public class VideogiocoService {
 
     public List<VideogiocoDTO> getAllVideogioco(){
         List<Videogioco> videogiochi = videogiocoRepo.findAll();
-
         List<VideogiocoDTO> videogiochiDto = new ArrayList<>();
 
         if (!videogiochi.isEmpty()){
@@ -82,40 +69,29 @@ public class VideogiocoService {
                 vDto.setId(v.getId());
                 vDto.setCodiceVideogioco(v.getCodiceVideogioco());
                 vDto.setTitolo(v.getTitolo());
-                //vDto.setGeneri(v.getGeneri());
-                //vDto.setPiattaforma(v.getPiattaforma());
                 vDto.setPrezzo(v.getPrezzo());
                 vDto.setValutazione(v.getValutazione());
                 vDto.setDescrizione(v.getDescrizione());
                 vDto.setRequisitiDiSistema(v.getRequisitiDiSistema());
-
                 videogiochiDto.add(vDto);
             }
             return videogiochiDto;
         }
-
-
         return null;
-    }
-
-    public void deleteVideogioco(Videogioco videogioco) {
-        videogiocoRepo.delete(videogioco);
     }
 
     public void deleteVideogiocoById(Long id) {
         videogiocoRepo.deleteById(id);
     }
 
-    public void updateVideogiocoDto(VideogiocoDTO videogioco) {
+    public void updateVideogioco(VideogiocoDTO videogioco) {
         if (videogioco.getId() == null) {
             throw new RuntimeException("Videogico non trovato");
         }
         Videogioco v = new Videogioco();
         v.setId(videogioco.getId());
         v.setCodiceVideogioco(videogioco.getCodiceVideogioco());
-        //videogioco.getGeneri().forEach(g->v.addGeneri(g));
         v.setTitolo(videogioco.getTitolo());
-        //v.setPiattaforma(videogioco.getPiattaforma());
         v.setPrezzo(videogioco.getPrezzo());
         v.setValutazione(videogioco.getValutazione());
         v.setDescrizione(videogioco.getDescrizione());
@@ -130,7 +106,6 @@ public class VideogiocoService {
             videogiocoRepo.save(entity);
         });
     }
-
     public ResponseEntity<?> makeValutation(Double valutazione, Videogioco v) {
         if (valutazione < 0 || valutazione > 5) {
             ResponseEntity.badRequest().body("La valutazione deve essere compresa tra 0 e 5, è possibile l'uso di valori decimali!");
@@ -143,8 +118,6 @@ public class VideogiocoService {
         }
         return ResponseEntity.badRequest().build();
     }
-
-
     public List<Videogioco> getVideogiocoByValutation(Double valutazione){
         return videogiocoRepo.findByValutazione(valutazione);
     }

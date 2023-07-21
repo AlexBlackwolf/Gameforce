@@ -4,7 +4,6 @@ import com.example.Gameforce.dto.CarrelloDTO;
 import com.example.Gameforce.dto.OrdineDTO;
 import com.example.Gameforce.entity.Carrello;
 import com.example.Gameforce.entity.Ordine;
-import com.example.Gameforce.entity.Videogioco;
 import com.example.Gameforce.repository.CarrelloRepo;
 import com.example.Gameforce.repository.OrdineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +23,15 @@ public class CarrelloService {
         this.carrelloRepo = carrelloRepo;
         this.ordineRepo = ordineRepo;
     }
-    public void svuotaCarrello(Long id){
-        Optional<Carrello> carrelloOptional= this.getCarrelloById(id);
+   /* public void svuotaCarrello(Long id){
+        CarrelloDTO carrelloOptional= this.getCarrelloById(id);
         carrelloOptional.ifPresent(Carrello::svuotaCarrello);
     }
 
     public void acquistaCarrello(Long id){
-        Optional<Carrello> carrelloOptional = this.getCarrelloById(id);
+        CarrelloDTO carrelloOptional = this.getCarrelloById(id);
         carrelloOptional.ifPresent(Carrello::acquistaCarrello);
-    }
+    }*/
     public void addCarrello(CarrelloDTO carrello){
         Carrello c = new Carrello();
         c.setId(carrello.getId());
@@ -52,11 +51,7 @@ public class CarrelloService {
         }
         return cDTO;
     }
-    public Optional<Carrello> getCarrelloById(Long id) {
-        return carrelloRepo.findById(id);
-    }
-
-    public CarrelloDTO getCarrelloByIdDto(Long id) {
+    public CarrelloDTO getCarrelloById(Long id) {
         Optional<Carrello> carrello = carrelloRepo.findById(id);
         if (carrello.isPresent()){
             CarrelloDTO cDto = new CarrelloDTO();
@@ -84,20 +79,11 @@ public class CarrelloService {
         return null;
     }
 
-//    public void deleteCarrello(Carrello carrello) {
-//        carrelloRepo.delete(carrello);
-//    }
     public void deleteCarrelloById(Long id) {
         carrelloRepo.deleteById(id);
     }
-//    public void updateCarrello(Carrello carrello){
-//        if (carrello.getId()==null){
-//            throw new RuntimeException("Carrello non trovato");
-//        }
-//
-//        carrelloRepo.save(carrello);
-//    }
-    public void updateCarrelloDto(CarrelloDTO carrello){
+
+    public void updateCarrello(CarrelloDTO carrello){
 
         if (carrello.getId()==null){
             throw new RuntimeException("Carrello non trovato");
