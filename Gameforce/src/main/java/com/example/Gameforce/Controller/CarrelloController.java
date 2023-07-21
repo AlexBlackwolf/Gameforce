@@ -24,7 +24,7 @@ public class CarrelloController {
     }
 
     @PostMapping("/add-carrello")
-    @Operation(description = "Chiamata per aggiungere un carrello")
+    @Operation(summary = "Chiamata per aggiungere un carrello", description = "Questa chiamata ci da la possibilità aggiungere un carrello nuovo da riempire con un utente, ordine e videogioco.")
     @ApiResponse
     public ResponseEntity<?> addCarrelloDto(@RequestBody CarrelloDTO carrello) {
         carrelloService.addCarrello(carrello);
@@ -32,7 +32,7 @@ public class CarrelloController {
     }
 
     @GetMapping("/get-all-carrello")
-    @Operation(description = "Chimata per visualizzare tutti i  carrelli")
+    @Operation(summary = "Chimata per visualizzare tutti i  carrelli", description = "Con questa chiamata visualizziamo una lista contenente tutti i carrelli presenti nel database.")
     @ApiResponse
     public ResponseEntity<List<CarrelloDTO>> getCarrelliDto() {
         List<CarrelloDTO> carrelliDto = carrelloService.getCarrelli();
@@ -40,7 +40,7 @@ public class CarrelloController {
     }
 
     @GetMapping("/get-carrello/{id}")
-    @Operation(description = "Chiamata per visualizzare un carrello tramite id")
+    @Operation(summary = "Chiamata per visualizzare un carrello tramite id", description = "Questa chiamata ci consente di visualizzare un carrello tramite il parametro di ricerca ID.")
     @ApiResponse
     public ResponseEntity<?> getCarrelloById(@PathVariable Long id) {
         CarrelloDTO carrelloDTO = carrelloService.getCarrelloById(id);
@@ -53,24 +53,23 @@ public class CarrelloController {
     }
 
     @DeleteMapping("/delete-carrello/{id}")
-    @Operation(description = "Chiamata per cancellare un carrello tramite id")
+    @Operation(summary = "Chiamata per cancellare un carrello tramite id", description = "Con questa chiamata eliminiamo fisicamente un carrello, ricercandolo col parametro ID, dal database.")
     @ApiResponse
     public ResponseEntity<?> deleteCarrelloById(@PathVariable Long id) {
         carrelloService.deleteCarrelloById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update-carrello{id}")
-    @Operation(description = "Chiamata per modificare un carrello")
+    @PutMapping("/update-carrello/{id}")
+    @Operation(summary = "Chiamata per modificare un carrello", description = "Questa chiamata ci consente di modificare i parametri di un carrello, ricercandolo per id e inserendo i nuovi dati nei campi che desideriamo modificare.")
     @ApiResponse
     public ResponseEntity<?> updateCarrello(@PathVariable Long id, @RequestBody CarrelloDTO carrello) {
-        carrello.setId(id);
         carrelloService.updateCarrello(carrello);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/carrello/logicalDelete/{id}")
-    @Operation(description = "Chiamata per eseguire una cancellazione logica")
+    @PatchMapping("/carrello/logicalDelete/{id}")
+    @Operation(summary = "Chiamata per eseguire una cancellazione logica", description = "Questa chiamata ci consente di non visualizzare più un carrello nelle chiamate API come se fosse cancellato ma viene mantenuto sul database.")
     @ApiResponse
     public ResponseEntity<?> logicalDelete(@PathVariable Long id) {
         carrelloService.logicalDelete(id);

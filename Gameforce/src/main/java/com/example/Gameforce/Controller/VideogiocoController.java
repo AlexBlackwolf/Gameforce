@@ -24,7 +24,7 @@ public class VideogiocoController {
     }
 
     @PostMapping("/add-videogioco")
-    @Operation(description = "Chiamata per aggiungere un videogioco")
+    @Operation(summary = "Chiamata per aggiungere un videogioco", description = "Questa chiamata ci da la possibilità aggiungere un videogioco nuovo da inserire sul database")
     @ApiResponse
     public ResponseEntity<?> addVideogioco(@RequestBody VideogiocoDTO videogiocoDTO) {
         videogiocoService.addVideogioco(videogiocoDTO);
@@ -32,7 +32,7 @@ public class VideogiocoController {
     }
 
     @GetMapping("/get-all-videogioco")
-    @Operation(description = "chiamate per visualizzare tutti i videogiochi")
+    @Operation(summary = "Chiamate per visualizzare tutti i videogiochi", description = "Con questa chiamata visualizziamo una lista contenente tutti gli utenti presenti nel database.")
     @ApiResponse
     public ResponseEntity<?>getAllVideogioco(){
         List<VideogiocoDTO> list = videogiocoService.getAllVideogioco();
@@ -40,7 +40,7 @@ public class VideogiocoController {
     }
 
     @GetMapping("/get-videogioco/{id}")
-    @Operation(description = "Chiamata per visualizzare un videogioco")
+    @Operation(summary = "Chiamata per visualizzare un videogioco", description = "Questa chiamata ci consente di visualizzare un videogioco tramite il parametro di ricerca ID.")
     @ApiResponse
     public ResponseEntity<?> getVideogioco(@PathVariable Long id) {
         VideogiocoDTO videogiocoDTO = videogiocoService.getVidegiocoById(id);
@@ -52,18 +52,17 @@ public class VideogiocoController {
     }
 
     @DeleteMapping("/delete-videogioco/{id}")
-    @Operation(description = "Chiamata per eliminare un videogioco")
+    @Operation(summary = "Chiamata per eliminare un videogioco", description = "Con questa chiamata eliminiamo fisicamente un videogioco, ricercandolo col parametro ID, dal database.")
     @ApiResponse
     public ResponseEntity<?> deleteVideogioco(@PathVariable Long id) {
         videogiocoService.deleteVideogiocoById(id);
         return ResponseEntity.noContent().build();
     }
-
+//  tolto videogioco.setId
     @PutMapping("/update-videogioco/{id}")
-    @Operation(description = "Chiamata per modificare un videogioco")
+    @Operation(summary = "Chiamata per modificare un videogioco", description = "Questa chiamata ci consente di modificare i parametri di un videogioco, ricercandolo per id e inserendo i nuovi dati nei campi che desideriamo modificare.")
     @ApiResponse
     public ResponseEntity<?> updateVideogioco(@PathVariable Long id, @RequestBody VideogiocoDTO videogiocoDTO) {
-        videogiocoDTO.setId(id);
         try {
             videogiocoService.updateVideogioco(videogiocoDTO);
             return ResponseEntity.ok().build();
@@ -73,7 +72,7 @@ public class VideogiocoController {
     }
 
     @PatchMapping("/logicalDelete-videogioco/{id}")
-    @Operation(description = "Chiamata per effettuare la cancellazione logica")
+    @Operation(summary = "Chiamata per effettuare la cancellazione logica", description = "Questa chiamata ci consente di non visualizzare più un videogioco nelle chiamate API come se fosse cancellato ma viene mantenuto sul database.")
     @ApiResponse
     public ResponseEntity<?> logicalDeleteVideogioco(@PathVariable Long id) {
         videogiocoService.logicalDelete(id);

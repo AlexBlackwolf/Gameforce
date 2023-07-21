@@ -24,7 +24,7 @@ public class OrdineController {
     }
 
     @PostMapping("/add-ordine")
-    @Operation(description = "Chiamata per aggiungere un ordine")
+    @Operation(summary = "Chiamata per aggiungere un ordine", description = "Questa chiamata ci da la possibilità aggiungere un ordine nuovo da riempire con un utente, carrello e videogioco.")
     @ApiResponse
     public ResponseEntity<?> addOrdine(@RequestBody OrdineDTO ordineDTO) {
         ordineService.addOrdine(ordineDTO);
@@ -32,7 +32,7 @@ public class OrdineController {
     }
 
     @GetMapping("/get-ordine/{id}")
-    @Operation(description = "Chiamata per aggiungere un ordine")
+    @Operation(summary = "Chiamata per aggiungere un ordine", description = "Questa chiamata ci consente di visualizzare un ordine tramite il parametro di ricerca ID.")
     @ApiResponse
     public ResponseEntity<?> getOrdine(@PathVariable Long id) {
         OrdineDTO ordineDTO = ordineService.getOrdineById(id);
@@ -44,7 +44,7 @@ public class OrdineController {
     }
 
     @GetMapping("/get-all-ordine")
-    @Operation(description = "chiamate per visualizzare tutti gli ordini")
+    @Operation(summary = "Chiamate per visualizzare tutti gli ordini", description = "Con questa chiamata visualizziamo una lista contenente tutti gli ordini presenti nel database.")
     @ApiResponse
     public ResponseEntity<?>getAllOrdini(){
         List<OrdineDTO> list = ordineService.getOrdini();
@@ -52,20 +52,19 @@ public class OrdineController {
     }
 
     @DeleteMapping("/delete-ordine/{id}")
-    @Operation(description = "Chiamata per cancellare un ordine tramite id")
+    @Operation(summary = "Chiamata per cancellare un ordine tramite id", description = "Con questa chiamata eliminiamo fisicamente un ordine, ricercandolo col parametro ID, dal database.")
     @ApiResponse
     public ResponseEntity<?> deleteOrdine(@PathVariable Long id) {
         ordineService.deleteOrdineById(id);
         return ResponseEntity.noContent().build();
     }
-
+//  tolto ordine.setId e il parametro id che si passa dal service
     @PutMapping("/update-ordine/{id}")
-    @Operation(description = "Chiamata per modificare un ordine")
+    @Operation(summary = "Chiamata per modificare un ordine", description = "Questa chiamata ci consente di modificare i parametri di un ordine, ricercandolo per id e inserendo i nuovi dati nei campi che desideriamo modificare.")
     @ApiResponse
     public ResponseEntity<?> updateOrdine(@PathVariable Long id, @RequestBody OrdineDTO ordineDTO) {
-        ordineDTO.setId(id);
         try {
-            ordineService.updateOrdine(id, ordineDTO);
+            ordineService.updateOrdine(ordineDTO);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -73,7 +72,7 @@ public class OrdineController {
     }
 
     @PatchMapping("/ordine/logical-delete/{id}")
-    @Operation(description = "Chiamata per eseguire una cancellazione logica")
+    @Operation(summary = "Chiamata per eseguire una cancellazione logica", description = "Questa chiamata ci consente di non visualizzare più un ordine nelle chiamate API come se fosse cancellato ma viene mantenuto sul database.")
     @ApiResponse
     public ResponseEntity<?> logicalDeleteOrdine(@PathVariable Long id) {
         ordineService.logicalDelete(id);

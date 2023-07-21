@@ -17,8 +17,9 @@ public abstract class AuditableEntity {
     private String modifiedBy;
     @JsonIgnore
     private String modifiedOn;
+    // la colonna deleted l'ho messa di default null così risulta sempre presente in tabella. altrimenti va in errore il programma
     @JsonIgnore
-    private Boolean deleted;
+    private Boolean deleted = false;
 
 
     public AuditableEntity(Long id, String createdOn, String createBy, String modifyBy, String modifyOn) {

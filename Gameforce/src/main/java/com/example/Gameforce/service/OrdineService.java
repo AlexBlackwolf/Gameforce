@@ -87,63 +87,65 @@ public class OrdineService {
     }
 
     // da migliorare
-    public void updateOrdine(Long id, OrdineDTO ordineDto) {
-        Optional<Ordine> optionalOrdine = ordineRepo.findById(id);
+//    tolto long id  e inserito ordine.getId come valore del metodo findById nell'optional, commentato temporaneamente utente,carrello e videogioco.
+    public void updateOrdine(OrdineDTO ordineDto) {
+        Optional<Ordine> optionalOrdine = ordineRepo.findById(ordineDto.getId());
         if (optionalOrdine.isPresent()) {
             Ordine ordine = optionalOrdine.get();
             ordine.setDataOrdine(ordineDto.getDataOrdine());
             ordine.setCodiceOrdine(ordineDto.getCodiceOrdine());
             ordine.setDeleted(false);
 
-            Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
-            if (optionalUtente.isPresent()) {
-                Utente utente = optionalUtente.get();
-                ordine.setUtente(utente);
-            } else {
-                throw new RuntimeException("Utente not found");
-            }
-
-            Optional<Carrello> optionalCarrello = carrelloRepo.findById(ordineDto.getCarrello().getId());
-            if (optionalCarrello.isPresent()) {
-                Carrello carrello = optionalCarrello.get();
-                ordine.setCarrello(carrello);
-            } else {
-                throw new RuntimeException("Carrello not found");
-            }
-
-            List<Videogioco> videogiochi = new ArrayList<>();
-            for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
-                Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
-                if (optionalVideogioco.isPresent()) {
-                    Videogioco videogioco = optionalVideogioco.get();
-                    videogiochi.add(videogioco);
-                } else {
-                    throw new RuntimeException("Videogioco not found");
-                }
-            }
-            ordine.setVideogiochi(videogiochi);
+//            Optional<Utente> optionalUtente = utenteRepo.findById(ordineDto.getUtente().getId());
+//            if (optionalUtente.isPresent()) {
+//                Utente utente = optionalUtente.get();
+//                ordine.setUtente(utente);
+//            } else {
+//                throw new RuntimeException("Utente not found");
+//            }
+//
+//            Optional<Carrello> optionalCarrello = carrelloRepo.findById(ordineDto.getCarrello().getId());
+//            if (optionalCarrello.isPresent()) {
+//                Carrello carrello = optionalCarrello.get();
+//                ordine.setCarrello(carrello);
+//            } else {
+//                throw new RuntimeException("Carrello not found");
+//            }
+//
+//            List<Videogioco> videogiochi = new ArrayList<>();
+//            for (VideogiocoDTO videogiocoDto : ordineDto.getVideogiochi()) {
+//                Optional<Videogioco> optionalVideogioco = videogiocoRepo.findById(videogiocoDto.getId());
+//                if (optionalVideogioco.isPresent()) {
+//                    Videogioco videogioco = optionalVideogioco.get();
+//                    videogiochi.add(videogioco);
+//                } else {
+//                    throw new RuntimeException("Videogioco not found");
+//                }
+//            }
+//            ordine.setVideogiochi(videogiochi);
 
             ordineRepo.save(ordine);
         } else {
             throw new RuntimeException("Ordine not found");
         }
     }
+    // spostato ordineDto dentro il cliclo for e l'if e uscito il return dal ciclo for
     public List<OrdineDTO> getOrdini(){
 
         List<Ordine> ordini = ordineRepo.findAll();
         List<OrdineDTO> ordiniDto = new ArrayList<>();
 
-        OrdineDTO oDto = new OrdineDTO();
         for (Ordine o : ordini){
             if (!ordini.isEmpty()){
+                OrdineDTO oDto = new OrdineDTO();
                 oDto.setId(o.getId());
                 oDto.setCodiceOrdine(o.getCodiceOrdine());
                 oDto.setDataOrdine(o.getDataOrdine());
                 ordiniDto.add(oDto);
-                return ordiniDto;
             }
         }
-        return null;
+        return ordiniDto;
+
     }
     public void deleteOrdineById(Long id) {
         ordineRepo.deleteById(id);

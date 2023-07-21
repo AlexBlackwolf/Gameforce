@@ -82,7 +82,7 @@ public class CarrelloService {
     public void deleteCarrelloById(Long id) {
         carrelloRepo.deleteById(id);
     }
-
+//  tolto carrello.setId
     public void updateCarrello(CarrelloDTO carrello){
 
         if (carrello.getId()==null){
